@@ -1,0 +1,5 @@
+<h1>Listings:</h1>
+
+<% @listings.each do |l| %>
+  <li><%= link_to l.location, listing_path(l) %></li>
+<% end %>

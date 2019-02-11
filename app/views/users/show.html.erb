@@ -1,0 +1,9 @@
+<h1>Hey, <%= @user.name %>!</h1>
+
+<%= @user.email %><br>
+<% @user.listings.each do |listing| %>
+  <li><%= link_to listing.location, listing_path(listing) %></li>
+<% end %>
+
+<%= link_to "Edit Your Profile", edit_user_path(@user) %><br>
+<%= link_to "Create a Listing", create_listing_path %>
