@@ -1,0 +1,9 @@
+<h2><%= @booker.name %></h2>
+<hr>
+<h4> Current Bookings </h4>
+<% @booker.bookings.each do |booking| %>
+<%= link_to booking.name, booking_path(booking) %>
+<% end %><br><br>
+<%= button_to "Edit", edit_booker_path(@booker), method: :get %>
+<hr>
+<%= button_to "Book Listing", new_booker_booking_path, method: :get %>

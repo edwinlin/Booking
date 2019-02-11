@@ -3,7 +3,8 @@ class CreateBookings < ActiveRecord::Migration[5.2]
     create_table :bookings do |t|
       t.integer :booker_id
       t.integer :listing_id
-
+      t.string 	:name
+      
       t.timestamps
     end
   end
