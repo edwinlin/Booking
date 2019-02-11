@@ -1,5 +1,5 @@
 <% @listings.each do |listing| %>
-<%= listing.name %>
+<%= link_to listing.name, listing_path(listing) %>
 <% end %>
 <hr>
 <%= button_to "Back to Welcome Screen", welcome_path, method: :get %>
