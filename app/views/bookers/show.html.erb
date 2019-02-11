@@ -1,0 +1,5 @@
+<h2><%= @booker.name %></h2>
+
+<%= button_to "Edit", edit_booker_path(@booker), method: :get %>
+<hr>
+<%= button_to "Book Listing", new_booker_booking_path, method: :get %>

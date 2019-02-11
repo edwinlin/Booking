@@ -1,0 +1,21 @@
+<%if flash[:error]%>
+<% flash[:error].each do |error|%>
+<li style="color:red"><%= error %></li>
+<%end%>
+<%end%>
+
+<%= form_for @listing do |f|%>
+<%= f.label :name %>
+<%= f.text_field :name %><br>
+
+<% lister = Lister.find(@listing.lister_id) %>
+<%#= f.label "Lister ID" %>
+<%= f.collection_select :lister_id, Lister.all, :id, :name %>
+<%#= f.hidden_field :lister_id, value: lister.id %>
+
+
+<%= f.submit "Add Listing" %>
+<% end %>
+<hr>
+<%= button_to "Cancel", listings_path, method: :get %>
+
