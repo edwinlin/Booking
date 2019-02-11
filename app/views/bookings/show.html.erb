@@ -1,8 +1,0 @@
-<h2><%= @booking.name %></h2>
-<% booker = Booker.find(@booking.booker_id).name%>
-<p>Booker: <%= link_to booker, booker_path(@booking.booker_id) %></p>
-<p>Listing: <%= link_to Listing.find(@booking.listing_id).name, listing_path(@booking.listing_id) %></p>
-
-<hr>
-<%= button_to "Edit", edit_booking_path(@booking), method: :get %>
-<%= button_to "Back to Bookings Index", bookings_path, method: :get %>
