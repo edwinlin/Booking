@@ -2,9 +2,8 @@
 
 <h3>This is where the Calendar goes:</h3>
 
-<%= month_calendar(attribute: :start_date, end_attribute: :end_date) do |date| %>
+<%= month_calendar do |date| %>
   <%= link_to date, create_booking_path(date) %>
 <% end %>
-
 <br>
 <%= link_to "Edit Listing", edit_a_listing_path %>

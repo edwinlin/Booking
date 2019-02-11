@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @booking.start_date
+    @booking.start_date = params[:start_date]
     @user = User.find(session[:user_id])
     @listing = Listing.find_by(user_id: @user.id)
   end
