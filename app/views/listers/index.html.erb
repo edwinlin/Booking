@@ -1,3 +1,5 @@
 <% @listers.each do |lister| %>
 <%= lister.name %>
 <% end %>
+<hr>
+<%= button_to "Back to Welcome Screen", welcome_path, method: :get %>

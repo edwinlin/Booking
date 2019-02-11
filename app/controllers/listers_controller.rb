@@ -46,7 +46,8 @@ class ListersController < ApplicationController
 	end
 
 	def create_new_listing
-		@lister_id = 
+		@lister_id = Lister.find[params:id]
+		
 	end
 
 	private

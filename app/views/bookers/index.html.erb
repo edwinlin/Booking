@@ -1,3 +1,5 @@
 <% @bookers.each do |booker| %>
 <%= link_to booker.name, booker_path(booker) %>
 <% end %>
+<hr>
+<%= button_to "Back to Welcome Screen", welcome_path, method: :get %>
