@@ -3,11 +3,16 @@
 Email: <%= @user.email %><br>
 
 Listings:
-<ul>
-  <% @user.listings.each do |listing| %>
-    <li><%= link_to listing.location, listing_path(listing) %></li>
-  <% end %>
-</ul>
+
+<% if @user.listings.empty?%>
+<li>You Currently Have No Listings.</li>
+<% else %>
+  <ul>
+    <% @user.listings.each do |listing| %>
+      <li><%= link_to listing.location, listing_path(listing) %></li>
+    <% end %>
+  </ul>
+<% end %>
 
 <h2>Here are your upcoming Bookings:</h2>
 <div>
