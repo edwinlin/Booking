@@ -87,5 +87,5 @@
 development:
   adapter: postgresql
   host: localhost
-  username: CassSam
+  username: jonathanfreed
   database: Reservation_development
