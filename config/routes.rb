@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/users/:id/new_listing', to: "listings#new", as: "create_listing"
   get '/users/:id/edit_listing', to: "listings#edit", as: "edit_listing"
 
-  get '/users/:start_date/new_booking', to: "bookings#new", as: "create_booking"
+  get '/users/:start_date/:id/new_booking', to: "bookings#new", as: "create_booking"
   get '/users/:id/edit_booking', to: "bookings#edit", as: "edit_booking"
 
 end

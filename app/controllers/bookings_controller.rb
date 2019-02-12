@@ -14,7 +14,7 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @booking.start_date = params[:start_date]
-    @listing = Listing.find_by(params[:id])
+    @listing = Listing.find(params[:id])
     @user = User.find(session[:user_id])
   end
 
@@ -26,8 +26,6 @@ class BookingsController < ApplicationController
   end
 
   def edit
-    byebug
-    @bookings = Listing.bookings.all
     flash[:error] = nil
   end
 
