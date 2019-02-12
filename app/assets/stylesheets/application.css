@@ -15,10 +15,9 @@ body {
   width: 60%;
 }
 
-.has-events {
-background-color: red;
+.has-events #avail {
+display: none;
 }
-
 
 
 .simple-calendar {
