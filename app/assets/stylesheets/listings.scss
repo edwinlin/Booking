@@ -1,4 +1,43 @@
 /* // Place all the styles related to the Listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-// base.scss */
+// base.scss
+
+h1 {
+  color: navy;
+}
+#form {
+  display: flex;
+    justify-content: center;
+}
+
+.simple-calendar {
+
+
+
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {
+  background-color: yellow;
+  }
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {
+  background-color: red;
+  }
+}
