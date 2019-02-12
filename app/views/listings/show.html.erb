@@ -1,9 +1,14 @@
 <h1><%= @listing.location %></h1>
+<h3>Belongs To: <%= @listing.user.name.capitalize %></h3>
 
-<h3>This is where the Calendar goes:</h3>
+<h3>Reserve Your Dates:</h3>
 
-<%= month_calendar do |date| %>
+<%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
   <%= link_to date, create_booking_path(date) %>
+  <% bookings.each do |booking| %>
+    <div><%= booking.user.name %></div>
+  <% end %>
 <% end %>
+
 <br>
-<%= link_to "Edit Listing", edit_a_listing_path %>
+<%# link_to "Edit Listing", edit_listing_path %>

@@ -9,5 +9,16 @@ Listings:
   <% end %>
 </ul>
 
+<h2>Here are your upcoming Bookings:</h2>
+<div>
+  <% @user.bookings.each do |booking| %>
+    <li> Address: <%= link_to booking.listing.location, booking_path(booking) %><br>
+    Start Date: <%= booking.start_date %><br>
+    End Date: <%= booking.end_date %></li>
+  <% end %>
+</div><br>
+
 <%= link_to "Edit Your Profile", edit_user_path(@user) %><br>
-<%= link_to "Create a Listing", create_listing_path %>
+<%= link_to "Create a Listing", create_listing_path %><br>
+<%= link_to "View Listings", listings_path %><br>
+<%= link_to "Sign Out", logout_path, method: :delete %>

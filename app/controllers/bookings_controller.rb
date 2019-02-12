@@ -8,13 +8,14 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @user = User.find(session[:user_id])
   end
 
   def new
     @booking = Booking.new
     @booking.start_date = params[:start_date]
+    @listing = Listing.find(params[:id])
     @user = User.find(session[:user_id])
-    @listing = Listing.find_by(user_id: @user.id)
   end
 
   def create
