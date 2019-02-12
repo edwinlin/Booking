@@ -12,8 +12,7 @@ class ListingsController < ApplicationController
   end
 
   def lister_show
-    @listing = Listing.find(params[:id])
-    @lister = @listing.user
+    @lister = User.find(params[:id])
   end
 
   def new
