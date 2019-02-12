@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
 
-	def welcome
-		# @user = User.find(session[:user_id])
-		render :welcome
+	def welcome_1
 	end
 
 	def current_user

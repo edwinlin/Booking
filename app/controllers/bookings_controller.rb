@@ -12,6 +12,7 @@ class BookingsController < ApplicationController
   end
 
   def new
+    flash[:error] = []
     @booking = Booking.new
     @booking.start_date = params[:start_date]
     @listing = Listing.find(params[:id])
@@ -20,9 +21,13 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.create(booking_params)
-    redirect_to new_booking_path unless @booking.valid?
-    session[:booking_id] = @booking.id
-    redirect_to booking_path(@booking)
+    if @booking.valid?
+      session[:booking_id] = @booking.id
+      redirect_to booking_path(@booking)
+    else
+      flash[:error] = @booking.errors.full_messages
+      redirect_to create_booking_path
+    end
   end
 
   def edit

@@ -2,9 +2,10 @@ Rails.application.routes.draw do
 
   resources :users, except: :index
   resources :listings, only: [:index, :new, :create, :update, :show, :destroy]
-  resources :bookings, only: [:index, :create, :update, :show, :destroy]
+  resources :bookings, only: [:index, :new, :create, :update, :show, :destroy]
 
-  get '/', to: 'application#welcome', as: 'welcome'
+  get '/', to: 'application#welcome_1', as: 'welcome_1'
+
   get '/login', to: 'sessions#new', as: 'new_session'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
