@@ -11,16 +11,28 @@ class ListingsController < ApplicationController
     @listings = Listing.all
   end
 
+  def lister_show
+    @listing = Listing.find(params[:id])
+    @lister = @listing.user
+  end
+
   def new
     @listing = Listing.new
     @user = User.find(session[:user_id])
+    flash[:error] = nil
   end
 
   def create
     @listing = Listing.create(listing_params)
-    redirect_to new_listing_path unless @listing.valid?
-    session[:listing_id] = @listing.id
-    redirect_to listing_path(@listing)
+    if @listing.valid?
+      session[:listing_id] = @listing.id
+      redirect_to listing_path(@listing)
+    else
+      flash[:error] = @listing.errors.full_messages
+      @listing = Listing.new
+      @user = User.find(session[:user_id])
+      render :new
+    end
   end
 
   def edit

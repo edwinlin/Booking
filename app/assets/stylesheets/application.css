@@ -1,1 +1,16 @@
-//*= require simple_calendar
+//*= require simple_calendar */
+
+@import "./listings.css"
+@import "./bookings.css"
+@import "./users.css"
+
+body {
+  background-color: yellow;
+}
+
+.carousel-inner img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}

@@ -2,7 +2,7 @@
 
 <% if flash[:error] %>
   <% flash[:error].each do |error| %>
-    <%= error %>
+    <li style="color:red"><%= error %></li>
   <% end %>
 <% end %>
 
@@ -11,7 +11,7 @@
 <%= f.text_field :name %><br>
 
 <%= f.label :email %>
-<%= f.text_field :email %><br>
+<%= f.email_field :email %><br>
 
 <%= f.label :password %>
 <%= f.text_field :password %><br>
