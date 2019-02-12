@@ -1,8 +1,8 @@
 //*= require simple_calendar */
 
-@import "./listings.css"
-@import "./bookings.css"
-@import "./users.css"
+@import "./listings.scss"
+@import "./bookings.scss"
+@import "./users.scss"
 
 body {
   background-color: yellow;
@@ -15,6 +15,34 @@ body {
   width: 60%;
 }
 
-h1 {
-  background-color: red;
+.has-events {
+background-color: red;
+}
+
+
+
+.simple-calendar {
+   .day {}
+
+   .wday-0 {}
+   .wday-1 {}
+   .wday-2 {}
+   .wday-3 {}
+   .wday-4 {}
+   .wday-5 {}
+   .wday-6 {}
+
+   .today {
+   background-color: yellow;
+   }
+   .past {}
+   .future {}
+
+   .start-date {}
+
+   .prev-month {}
+   .next-month { }
+   .current-month {}
+
+
 }
