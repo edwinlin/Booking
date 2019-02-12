@@ -4,7 +4,7 @@
 <h3>Reserve Your Dates:</h3>
 
 <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
-  <%= link_to date, create_booking_path(date, @listing.id) %>
+  <%= link_to date.day, create_booking_path(date, @listing.id) %>
   <% bookings.each do |booking| %>
     <div><%= booking.user.name %></div>
   <% end %>
