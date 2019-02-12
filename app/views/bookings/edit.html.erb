@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang=“en” dir=“ltr”>
+ <head>
+   <meta charset=“utf-8”>
+   <link rel=“stylesheet” href=“app/assets/stylesheets/application.css”>
+   <title></title>
+ </head>
+ <body>
+   <h1><%= @booking.listing.location %></h1>
+
+   <h1>Edit a Booking!</h1>
+
+   <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
+
+     <%= link_to date.day, create_booking_path(date, @booking.listing.id) %>
+     <div id="avail"><%= button_to "Available", create_booking_path(date, @booking.listing.id), method: :get %></div>
+     <% bookings.each do |booking| %>
+       <div><%= link_to "BOOKED", booking_path(booking) %></div>
+     <% end %>
+   <% end %>
+
+   <% if flash[:error] %>
+     <% flash[:error].each do |error| %>
+       <li style="color:red"><%= error %></li>
+     <% end %>
+   <% end %>
+
+   <%= form_for @booking do |f| %>
+
+     <%= f.label :start_date %>
+     <%= f.date_field :start_date %><br>
+
+     <%= f.label :end_date %>
+     <%= f.date_field :end_date%><br>
+
+     <%= f.submit %>
+   <% end %>
+
+   <br>
+   <%# link_to “Edit Listing”, edit_listing_path %>
+
+   <%= link_to "View All Listings", listings_path %>
+ </body>
+</html>

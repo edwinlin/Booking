@@ -1,0 +1,9 @@
+<h1>Hey, <%= @booking.user.name.capitalize %>!</h1>
+
+<h2>Here are your upcoming Booking Info:</h2>
+<h3>Address: <%= link_to @booking.listing.location, listing_path(@booking.listing) %></h3>
+<h3>Start Date: <%= @booking.start_date %></h3>
+<h3>End Date: <%= @booking.end_date %></h3>
+
+<%= link_to "Edit Booking", edit_booking_path %><br>
+<%= link_to "View User Profile", user_path(@booking.user) %>

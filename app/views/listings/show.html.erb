@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang=“en” dir=“ltr”>
+ <head>
+   <meta charset=“utf-8”>
+   <link rel=“stylesheet” href=“app/assets/stylesheets/application.css”>
+   <title></title>
+ </head>
+ <body>
+   <h1><%= @listing.location %></h1>
+   <h3>Lister: <%= link_to @listing.user.name, lister_show_path(@listing.user) %></h3>
+
+   <h3>Reserve Your Dates:</h3>
+
+   <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
+
+     <%= link_to date.day, create_booking_path(date, @listing.id) %>
+     <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+     <% bookings.each do |booking| %>
+       <div>BOOKED</div>
+     <% end %>
+   <% end %>
+
+   <br>
+   <%# link_to “Edit Listing”, edit_listing_path %>
+
+   <%= link_to "View All Listings", listings_path %>
+ </body>
+</html>
