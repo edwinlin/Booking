@@ -8,11 +8,21 @@ body {
   background-color: yellow;
 }
 
-.carousel-inner img {
+.carousel-inner .item img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 80%;
+}
+
+.carousel .item {
+    background:#F9F9F9;
+    border:1px solid #E0E0E0;
+    overflow:hidden;
+}
+
+.carousel-inner > .item > img:hover {
+    border: 1px solid #000000;
 }
 
 .has-events #avail {

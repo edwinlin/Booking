@@ -26,4 +26,5 @@ Listings:
 <%= link_to "Edit Your Profile", edit_user_path(@user) %><br>
 <%= link_to "Create a Listing", create_listing_path %><br>
 <%= link_to "View Listings", listings_path %><br>
-<%= link_to "Sign Out", logout_path, method: :delete %>
+<%= link_to "Sign Out", logout_path, method: :delete %><br>
+<%= link_to "Delete Account", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to delete your account?"} %>
