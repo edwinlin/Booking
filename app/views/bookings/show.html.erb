@@ -5,4 +5,5 @@
 <h3>Start Date: <%= @booking.start_date %></h3>
 <h3>End Date: <%= @booking.end_date %></h3>
 
-<%= link_to "Edit Booking", edit_booking_path %>
+<%= link_to "Edit Booking", edit_booking_path %><br>
+<%= link_to "View User Profile", user_path(@booking.user) %>

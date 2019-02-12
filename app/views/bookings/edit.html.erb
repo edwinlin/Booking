@@ -1,5 +1,12 @@
 <h1>Edit a Booking!</h1>
 
+<%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
+  <%= link_to date, create_booking_path(date) %>
+  <% bookings.each do |booking| %>
+    <div><%= booking.user.name %></div>
+  <% end %>
+<% end %>
+
 <%= form_for @booking do |f| %>
 
   <%= f.label :start_date %>
