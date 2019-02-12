@@ -1,31 +1,7 @@
-# Booker.create(name: "Edwin Lin")
-# Booker.create(name: "Cassidy Samelian")
-# Booker.create(name: "Jon Freed")
-# Booker.create(name: "John Sy")
-# Booker.create(name: "Bradley Cooper")
-#
-# Lister.create(name: "Lister1")
-# Lister.create(name: "Lister2")
-# Lister.create(name: "Lister3")
-# Lister.create(name: "Lister4")
-# Lister.create(name: "Lister5")
-#
-# Listing.create(name: "Soho 1", lister_id: 1)
-# Listing.create(name: "Soho 2", lister_id: 1)
-# Listing.create(name: "Soho 3", lister_id: 1)
-# Listing.create(name: "Soho 4", lister_id: 2)
-# Listing.create(name: "Tribeca 1", lister_id: 3)
-# Listing.create(name: "Tribeca 2", lister_id: 4)
-# Listing.create(name: "Tribeca 3", lister_id: 5)
-# Listing.create(name: "Tribeca 4", lister_id: 2)
-# Listing.create(name: "LIC 1", lister_id: 5)
-# Listing.create(name: "LIC 2", lister_id: 4)
-# Listing.create(name: "LIC 3", lister_id: 3)
-# Listing.create(name: "LIC 4", lister_id: 2)
-#
-# Booking.create(name: "EdwinLIC1", booker_id: 1, listing_id: 9)
-# Booking.create(name: "CassTrib1", booker_id: 2, listing_id: 5)
-# Booking.create(name: "JonFSoho1", booker_id: 3, listing_id: 1)
-# Booking.create(name: "EdwinTrib2", booker_id: 1, listing_id: 6)
-# Booking.create(name: "SySoho4", booker_id: 4, listing_id: 4)
-# Booking.create(name: "BradLIC3", booker_id: 5, listing_id: 11)
+require 'faker'
+
+50.times do User.create(name: Faker::Name.unique.name, email: Faker::Internet.email, password: Faker::Alphanumeric.alpha) end
+
+100.times do Listing.create(location: Faker::Address.full_address, user_id: Faker::Number.between(1, 50)) end
+
+70.times do Booking.create(user_id: Faker::Number.between(1, 50), start_date: Faker::Date.forward(60), end_date: Faker::Date.forward(70), listing_id: Faker::Number.between(1, 100)) end
