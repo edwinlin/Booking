@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- 
+<!--
 <html lang=“en” dir=“ltr”>
  <head>
    <meta charset=“utf-8”>
@@ -33,7 +33,6 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%= stylesheet_link_tag "listings" %>
 	<title>Document</title>
 </head>
 <body>
@@ -54,7 +53,7 @@
 </div>
 <div class="jumbotron text-center" style="margin-bottom:0">
 	 <h1><%= @listing.location %></h1>
-	<h3>Listing Owner: <%= @listing.user.name.capitalize %></h3>
+	<h3>Listing Owner: <%= link_to @listing.user.name.capitalize, lister_show_path(@listing.user) %></h3>
 </div>
 
 
@@ -65,6 +64,7 @@
 <div class="container">
 <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
   <%= link_to date.day, create_booking_path(date, @listing.id) %>
+  <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
   <% bookings.each do |booking| %>
     <div><%= booking.user.name %></div>
   <% end %>

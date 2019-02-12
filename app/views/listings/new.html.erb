@@ -35,18 +35,18 @@
 	<h1>Create a New Listing!</h1>
 	  <p>Where is your listing?</p>
 	</div>
-<div id="form">
+<!-- <div id="form">
 <form class="form-inline">
-  <div class="form-group form-control-lg">
-<%= form_for @listing do |f| %>
-  <%= f.hidden_field :user_id, value: @user.id %>
-  <%= f.label :location %>
-  <%= f.text_field :location %><br>
-  <%= f.submit %>
-<% end %>
-</div>
+  <div class="form-group form-control-lg"> -->
+  <%= form_for @listing do |f| %>
+    <%= f.hidden_field :user_id, value: @user.id %>
+    <%= f.label :location %>
+    <%= f.text_field :location %><br>
+    <%= f.submit %>
+  <% end %>
+<!-- </div>
 </form>
-</div>
+</div> -->
 
 
 </body>
