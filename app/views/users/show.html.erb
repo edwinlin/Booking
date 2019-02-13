@@ -8,23 +8,23 @@
 	<title>Profile</title>
 </head>
 <body>
-<div class="container text-center-left slogan">
-  <h4>BestBooking!</h4>
+<div class="container">
+	<img class="logo" src="/images/BestBookingLogo.jpg" alt="logo">
 </div>
+
 <nav class="navbar navbar-expand-lg navbar-light">
-<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-<a class="nav-link" <%= link_to "Listings", listings_path %></a>
-<a class="nav-link" <%= link_to "Create a Listing", create_listing_path %></a>
-<a class="nav-link" <%= link_to "Edit Your Profile", edit_user_path(@user) %></a>
-<a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-</ul>
+	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		<a class="nav-link" <%= link_to "Listings", listings_path %></a>
+		<a class="nav-link" <%= link_to "Create a Listing", create_listing_path %></a>
+		<a class="nav-link" <%= link_to "Edit Your Profile", edit_user_path(@user) %></a>
+		<a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+	</ul>
 </nav>
 
-<div class="container text-center" style="margin-bottom:0">
-<h1>Hey, <%= @user.name %>!</h1>
+<div class="container text-center">
+	<h1>Hi, <%= @user.name %>!</h1>
 </div>
 
-<span class="border border-primary"></span>
 <div class="container" style="margin-top:30px">
 
 <div class="row">
@@ -45,7 +45,7 @@
 <span class="border border-primary"></span>
 
 <div class="col-sm">
-  <h2>Your Upcoming Bookings:</h2>
+  <h2 class="text-center">Your Upcoming Bookings:</h2>
   <% if @user.bookings.empty?%>
 	 You Currently Have No Bookings.
 	<% else %>
@@ -54,9 +54,9 @@
 		<p><%= link_to booking.listing.location, booking_path(booking) %><br>
 		   <strong>Start Date: </strong><%= booking.start_date %><br>
 		   <strong>End Date: </strong><%= booking.end_date %></p>
-		    <% end %>
+      <% end %>
 	</ul>
-		  <% end %>
+	<% end %>
 	
 </div>
 
@@ -69,7 +69,7 @@
 
 </div>
 
-<footer class="fixed-bottom text-center" style="background-color: rgb(204, 221, 255);">
+<footer class="fixed-bottom text-center">
   <h4>BestBooking!</h3>
   <p>All Rights Reserved &trade;</p>
 </footer>

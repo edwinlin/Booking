@@ -8,30 +8,30 @@
 	<title>Edit Listing</title>
 </head>
 <body>
-
 <div class="container">
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-      </li>
-      <li class="nav-item">
-	        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-      </li>
-    </ul>
-  </nav>
+  <img class="logo" src="/images/BestBookingLogo.jpg" alt="logo">
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
+<nav class="navbar navbar-expand-lg navbar-light"">
+  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <% if !session[:user_id] %>
+      <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+      <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+    <% else %>
+      <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+      <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+      <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+    <% end %>
+  </ul>
+</nav>
+
+
+<div class="container text-center">
 	<h1>Create a New Listing!</h1>
 	  <p>Where is your listing?</p>  
-	</div> 
-<div id="form">
-<form class="form-inline">
-  <div class="form-group form-control-lg">
+</div> 
+
+
 <%= form_for @listing do |f| %>
   <%= f.hidden_field :user_id, value: @user.id %>
   <%= f.label :location %>
@@ -44,25 +44,9 @@
 
   <%= f.submit %>
 <% end %>
-</div>
-</form>
-</div>
 
-
+<footer class="text-center">
+    <h4>BestBooking!</h3>
+    <p>All Rights Reserved &trade;</p>
+</footer>
 </body>
-
-<h1>Edit a Listing!</h1>
-
-<%= form_for @listing do |f| %>
-
-  <%= f.label :location %>
-  <%= f.text_field :location %><br>
-
-  <%= f.label :start_date %>
-  <%= f.date_field :start_date %><br>
-
-  <%= f.label :end_date %>
-  <%= f.date_field :end_date %><br>
-
-  <%= f.submit %>
-<% end %>
