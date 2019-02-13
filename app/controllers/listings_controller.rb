@@ -1,53 +1,66 @@
 class ListingsController < ApplicationController
 
-	def index
-		@listings = Listing.all
-	end
+  before_action :set_listing, only: [:show, :edit, :update, :destroy]
+  before_action :authorized, only: [:new, :create]
 
-	def new
-		flash[:error] = nil
-		@listing = Listing.new
-	end
+  def index
+    @listings = Listing.all
+  end
 
-	def create
-		@listing = Listing.create(listing_params)
-		if @listing.valid?
-			redirect_to listing_path(@listing)
-		else
-			render :new
-		end
-	end
+  def show
+    @listings = Listing.all
+  end
 
-	def show
-		@listing = Listing.find(params[:id])
-	end
+  def lister_show
+    @lister = User.find(params[:id])
+  end
 
-	def edit
-		@listing = Listing.find(params[:id])
-	end
+  def new
+    @listing = Listing.new
+    @user = User.find(session[:user_id])
+    flash[:error] = nil
+  end
 
-	def update
-		@listing = Listing.find(params[:id])
-		@listing.update(listing_params)
-		if @listing.valid?
-			@listing.save
-			redirect_to listing_path(@listing)
-		else
-			flash[:error] = @booking.errors.full_message
-			render :edit
-		end
-	end
+  def create
+    @listing = Listing.create(listing_params)
+    if @listing.valid?
+      session[:listing_id] = @listing.id
+      redirect_to listing_path(@listing)
+    else
+      flash[:error] = @listing.errors.full_messages
+      @listing = Listing.new
+      @user = User.find(session[:user_id])
+      render :new
+    end
+  end
 
-	def destroy
-		@listing = Listing.find(params[:id])
-		@listing.destroy
-		redirect_to listings_path
-	end
+  def edit
+    flash[:error] = nil
+  end
 
-	private
+  def update
+    @listing.update(listing_params)
+    if @listing.valid?
+      redirect_to listing_path(@listing)
+    else
+      flash[:error] = @listing.errors.full_messages
+      render :edit
+    end
+  end
 
-	def listing_params
-		params.require(:listing).permit(:name, :lister_id)
-	end
+  def destroy
+    @listing.destroy
+    redirect_to welcome_path
+  end
+
+  private
+
+  def set_listing
+    @listing = Listing.find(params[:id])
+  end
+
+  def listing_params
+    params.require(:listing).permit(:user_id, :location, :reserved?, :start_date, :end_date)
+  end
 
 end

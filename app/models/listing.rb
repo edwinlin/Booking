@@ -1,8 +1,6 @@
 class Listing < ApplicationRecord
-	belongs_to :lister
-	has_many :bookings
-	has_many :bookers, through: :bookings
+  belongs_to :user
+  has_many :bookings
 
-	validates :name, presence:true
-
+  validates :location, presence: true
 end

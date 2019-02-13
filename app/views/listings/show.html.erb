@@ -1,10 +1,83 @@
-<h2><%= @listing.name %></h2>
-<p>Lister: <%= Lister.find(@listing.lister_id).name %></p>
-<hr>
-<h4> Current bookings </h4>
-<% @listing.bookings.each do |booking| %>
-<p>Guest: <%= link_to booking.name, booking_path(booking) %></p>
+<!DOCTYPE html>
+<!--
+<html lang=“en” dir=“ltr”>
+ <head>
+   <meta charset=“utf-8”>
+   <link rel=“stylesheet” href=“app/assets/stylesheets/application.css”>
+   <title></title>
+ </head>
+ <body>
+   <h1><%# @listing.location %></h1>
+   <h3>Lister: <%# link_to @listing.user.name.capitalize, lister_show_path(@listing.user) %></h3>
+
+   <h3>Reserve Your Dates:</h3>
+
+   <%# month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
+
+     <%# link_to date.day, create_booking_path(date, @listing.id) %>
+     <div id="avail"><%# button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+     <%# bookings.each do |booking| %>
+       <div>BOOKED</div>
+     <%# <% end %> %>
+   <%# <% end %> %>
+
+   <br>
+   <%# link_to “Edit Listing”, edit_listing_path %>
+
+   <%# link_to "View All Listings", listings_path %>
+ </body>
+</html> -->
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Document</title>
+</head>
+<body>
+<div class="container">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+	 <h1><%= @listing.location %></h1>
+	<h3>Listing Owner: <%= link_to @listing.user.name.capitalize, lister_show_path(@listing.user) %></h3>
+</div>
+
+
+
+<br>
+
+<h3>Reserve Your Dates:</h3>
+<div class="container">
+<%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
+  <%= link_to date.day, create_booking_path(date, @listing.id) %>
+  <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+  <% bookings.each do |booking| %>
+    <div><%= booking.user.name %></div>
+  <% end %>
 <% end %>
-<hr><br>
-<%= button_to "Edit", edit_listing_path(@listing), method: :get %>
-<%= button_to "Back to Listers Index", listers_path, method: :get %>
+</div>
+
+<br>
+
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+	  <h1>BestBooking!</h1>
+	  <p>All Rights Reserved &trade;</p>
+</div>
+
+</body>
+</html>

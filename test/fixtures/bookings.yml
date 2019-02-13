@@ -1,9 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  booker_id: 1
-  listing_id: 1
-
-two:
-  booker_id: 1
-  listing_id: 1

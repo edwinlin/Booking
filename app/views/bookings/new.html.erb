@@ -1,20 +1,21 @@
-<%if flash[:error]%>
-<% flash[:error].each do |error|%>
-<li style="color:red"><%= error %></li>
-<%end%>
-<%end%>
+<h1>Create a Booking!</h1>
 
-<%= form_for @booking do |f|%>
-<%= f.label :name %>
-<%= f.text_field :name %><br>
-
-<%= f.label "Booker" %>
-<%= f.collection_select :booker_id, Booker.all, :id, :name %><br>
-
-<%= f.label "Listing" %>
-<%= f.collection_select :listing_id, Listing.all, :id, :name %><br>
-
-<%= f.submit "Add Booking" %>
+<% if flash[:error] %>
+  <% flash[:error].each do |error| %>
+    <li style="color:red"><%= error %></li>
+  <% end %>
 <% end %>
-<hr>
-<%= button_to "Cancel", bookings_path, method: :get %>
+
+<%= form_for @booking do |f| %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.hidden_field :listing_id, value: @listing.id %>
+  <%= f.hidden_field :start_date, value: @booking.start_date %>
+
+  <%= f.label :start_date %>
+  <%= @booking.start_date %><br>
+
+  <%= f.label :end_date %>
+  <%= f.date_field :end_date, min: @booking.start_date %><br>
+
+  <%= f.submit %>
+<% end %>

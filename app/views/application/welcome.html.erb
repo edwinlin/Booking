@@ -1,6 +1,20 @@
-<h2> Welcome to Booking App </h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Welcome</title>
+</head>
+<body>
+<h2> Welcome!</h2>
 
-<%= link_to "Bookers Index", bookers_path %>
-<%= link_to "Bookings Index", bookings_path %>
-<%= link_to "Listers Index", listers_path %>
-<%= link_to "Listings Index", listings_path %>
+<div class:"navbar">
+  <%= link_to "Log In", "/login" %><br>
+  <%= link_to "Sign Up", new_user_path %><br>
+  <%= link_to "Log Out", "/logout", method: :delete %><br>
+  <%# link_to "View Listings", listings_path %>
+</div>
+	
+</body>
+</html>

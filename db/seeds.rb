@@ -1,40 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
 
-Booker.create(name: "Edwin Lin")
-Booker.create(name: "Cassidy Samelian")
-Booker.create(name: "Jon Freed")
-Booker.create(name: "John Sy")
-Booker.create(name: "Bradley Cooper")
+50.times do User.create(name: Faker::Name.unique.name, email: Faker::Internet.email, password: Faker::Alphanumeric.alpha) end
+User.create(name: "Cassidy Samelian", email: "cass@cass.com", password: "1")
 
-Lister.create(name: "Lister1")
-Lister.create(name: "Lister2")
-Lister.create(name: "Lister3")
-Lister.create(name: "Lister4")
-Lister.create(name: "Lister5")
+100.times do Listing.create(location: Faker::Address.full_address, user_id: Faker::Number.between(1, 50)) end
 
-Listing.create(name: "Soho 1", lister_id: 1)
-Listing.create(name: "Soho 2", lister_id: 1)
-Listing.create(name: "Soho 3", lister_id: 1)
-Listing.create(name: "Soho 4", lister_id: 2)
-Listing.create(name: "Tribeca 1", lister_id: 3)
-Listing.create(name: "Tribeca 2", lister_id: 4)
-Listing.create(name: "Tribeca 3", lister_id: 5)
-Listing.create(name: "Tribeca 4", lister_id: 2)
-Listing.create(name: "LIC 1", lister_id: 5)
-Listing.create(name: "LIC 2", lister_id: 4)
-Listing.create(name: "LIC 3", lister_id: 3)
-Listing.create(name: "LIC 4", lister_id: 2)
-
-Booking.create(name: "EdwinLIC1", booker_id: 1, listing_id: 9)
-Booking.create(name: "CassTrib1", booker_id: 2, listing_id: 5)
-Booking.create(name: "JonFSoho1", booker_id: 3, listing_id: 1)
-Booking.create(name: "EdwinTrib2", booker_id: 1, listing_id: 6)
-Booking.create(name: "SySoho4", booker_id: 4, listing_id: 4)
-Booking.create(name: "BradLIC3", booker_id: 5, listing_id: 11)
-
+70.times do Booking.create(user_id: Faker::Number.between(1, 50), start_date: Faker::Date.forward(60), end_date: Faker::Date.forward(70), listing_id: Faker::Number.between(1, 100)) end
