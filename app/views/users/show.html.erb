@@ -8,11 +8,11 @@
 	<title>Profile</title>
 </head>
 <body>
-<div class="container">
-	<img class="logo" src="/images/BestBookingLogo.jpg" alt="logo">
-</div>
+
+<a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
 
 <nav class="navbar navbar-expand-lg navbar-light">
+
 	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 		<a class="nav-link" <%= link_to "Listings", listings_path %></a>
 		<a class="nav-link" <%= link_to "Create a Listing", create_listing_path %></a>
@@ -29,17 +29,10 @@
 
 <div class="row">
 
+
 <div class="col-sm">
-  <h2>Your Listings:</h2>
-	<% if @user.listings.empty?%>
-	You Currently Have No Listings.
-	<% else %>
-	 <ul>
-	   <% @user.listings.each do |listing| %>
-	     <p><%= link_to listing.location, listing_path(listing) %></p>
-	   <% end %>
-	 </ul>
-	<% end %>
+	Profile Image
+	
 </div>
 
 <span class="border border-primary"></span>
@@ -60,9 +53,19 @@
 	
 </div>
 
+<span class="border border-primary"></span>
+
 <div class="col-sm">
-	listing images
-	
+  <h2>Your Listings:</h2>
+	<% if @user.listings.empty?%>
+	You Currently Have No Listings.
+	<% else %>
+	 <ul>
+	   <% @user.listings.each do |listing| %>
+	     <p><%= link_to listing.location, listing_path(listing) %></p>
+	   <% end %>
+	 </ul>
+	<% end %>
 </div>
 
 </div>

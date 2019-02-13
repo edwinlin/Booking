@@ -30,12 +30,17 @@ display: none;
   background-color: rgb(204, 221, 255);
   min-height: 60px;
   border-bottom: 1px solid #3333ff;
+  border-top:  2px solid #3333ff;
 }
 
 footer {
   max-height: 60px;
   border-top: 1px solid #3333ff;
   background-color: rgb(204, 221, 255);
+}
+
+a.right-side {
+  position: right;
 }
 
 h1 {
@@ -47,7 +52,13 @@ h1 {
 }
 
 .logo {
-  max-height: 50px;
+  margin-left: 20px;
+}
+
+a.bklink {
+  color: rgba(0,0,0,.5);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
 }
 
 

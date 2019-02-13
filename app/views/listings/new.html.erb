@@ -15,21 +15,19 @@
     <% end %>
   <% end %>
 
-<div class="container">
-  <img class="logo" src="/images/BestBookingLogo.jpg" alt="logo">
-</div>
+<a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
 
 <nav class="navbar navbar-expand-lg navbar-light">
   <ul class="navbar-nav">
-    <% if !session[:user_id] %>
-      <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-      <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
-      <a class="nav-link ml-auto p-2" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-    <% else %>
-      <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-      <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-      <a class="nav-link ml-auto p-2" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-    <% end %>
+      <% if !session[:user_id] %>
+        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+        <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+        <a class="right-side nav-link ml-auto p-2" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+      <% else %>
+        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+        <a class="right-side nav-link ml-auto p-2"<%= link_to "Sign Out", logout_path, method: :delete %></a>
+      <% end %>
   </ul>
 </nav>
 
@@ -37,7 +35,7 @@
     <div class="col">
 
     </div>
-    <div class="col">
+    <div class="col ">
       <h1>Create a New Listing</h1>
 
     <%= form_for @listing do |f| %>
@@ -56,7 +54,7 @@
   
 
 
-<footer class="text-center">
+<footer class="text-center fixed-bottom">
     <h4>BestBooking!</h3>
     <p>All Rights Reserved &trade;</p>
 </footer>

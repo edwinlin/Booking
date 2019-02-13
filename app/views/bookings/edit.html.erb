@@ -6,10 +6,41 @@
    <title></title>
  </head>
  <body>
+  
+  <% if flash[:error] %>
+     <% flash[:error].each do |error| %>
+       <li style="color:red"><%= error %></li>
+     <% end %>
+   <% end %>
+
+  <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <a class="nav-link bklink" <%= link_to "All Listings", listings_path %></a>
+    <a class="nav-link bklink" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+    <a class="nav-link bklink" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+  </ul>
+</nav>
+
+<div class="container text-center">
    <h1><%= @booking.listing.location %></h1>
+   <h1>Edit Your Booking</h1>
 
-   <h1>Edit a Booking!</h1>
+    <%= form_for @booking do |f| %>
 
+     <%= f.label :start_date %>
+     <%= f.date_field :start_date %><br>
+
+     <%= f.label :end_date %>
+     <%= f.date_field :end_date%><br>
+
+     <%= f.submit "Edit Booking"%>
+   <% end %>
+    
+</div>
+
+<div>
    <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
 
      <%= link_to date.day, create_booking_path(date, @booking.listing.id) %>
@@ -18,27 +49,13 @@
        <div><%= link_to "BOOKED", booking_path(booking) %></div>
      <% end %>
    <% end %>
+</div>
 
-   <% if flash[:error] %>
-     <% flash[:error].each do |error| %>
-       <li style="color:red"><%= error %></li>
-     <% end %>
-   <% end %>
 
-   <%= form_for @booking do |f| %>
-
-     <%= f.label :start_date %>
-     <%= f.date_field :start_date %><br>
-
-     <%= f.label :end_date %>
-     <%= f.date_field :end_date%><br>
-
-     <%= f.submit %>
-   <% end %>
-
-   <br>
-   <%# link_to “Edit Listing”, edit_listing_path %>
-
-   <%= link_to "View All Listings", listings_path %>
+<footer class="fixed-bottom text-center">
+  <h4>BestBooking!</h3>
+  <p>All Rights Reserved &trade;</p>
+</footer>
+</body>
  </body>
 </html>
