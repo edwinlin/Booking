@@ -21,13 +21,13 @@
 </nav>
 
 <div class="container text-center" style="margin-bottom:0">
-    <h1>Hey,<%= @user.name %>!</h1>
+    <h1>Hey, <%= @user.name.titleize %>!</h1>
 </div>
 
 
 <div id="blist" class="list-group ">
 	<div class="list-group-item", class="container">
-<h4 class="lead">Here's your upcoming booking, <%= @booking.user.name.capitalize %>:</h2>
+<h4 class="lead">Here's your upcoming booking, <%= @booking.user.name.titleize %>:</h2>
 <h5>Address: <%= link_to @booking.listing.location, listing_path(@booking.listing) %></h3>
 <h4 class="font-weight-light">Start Date: <%= @booking.start_date %></h3>
 <h4 class="font-weight-light">End Date: <%= @booking.end_date %></h3>

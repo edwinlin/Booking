@@ -51,7 +51,7 @@ class ListingsController < ApplicationController
 
   def destroy
     @listing.destroy
-    redirect_to welcome_path
+    redirect_to user_path(@listing.user)
   end
 
   private

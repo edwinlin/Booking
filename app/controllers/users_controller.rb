@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to welcome_path
+    redirect_to welcome_1_path
   end
 
   private

@@ -1,7 +1,7 @@
 <h1>Log In!</h1>
 
 <% if flash[:error] %>
-  <li><%= flash[:error] %></li>
+  <li style="color:red"><%= flash[:error] %></li>
 <% end %>
 
 <%= form_tag "/login" do %>

@@ -12,7 +12,7 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-light">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+      <a class="nav-link" <%= link_to "All Listings", listings_path %></a>
       <a class="nav-link" <%= link_to "Create a Listing", create_listing_path %></a>
       <a class="nav-link" <%= link_to "Edit Your Profile", edit_user_path(@user) %></a>
       <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
@@ -20,7 +20,7 @@
     </nav>
 
     <div class="container text-center" style="margin-bottom:0">
-      <h1>Hey, <%= @user.name %>!</h1>
+      <h1>Hey, <%= @user.name.titleize %>!</h1>
     </div>
 
     <span class="border border-primary"></span>

@@ -19,6 +19,9 @@
 	        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
       </li>
       <li class="nav-item">
+	        <a class="nav-link" <%= link_to "Delete Listing", listing_path(@listing), method: :delete, data: {confirm: "Are you sure you'd like to delete your listing?"} %></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
       </li>
     </ul>
@@ -30,17 +33,15 @@
 	</div>
 
   <div id="form">
-    <form class="form-inline">
-      <div class="form-group form-control-lg">
-        <%= form_for @listing do |f| %>
-          <%= f.hidden_field :user_id, value: @listing.user.id %>
-          <%= f.label :location %>
-          <%= f.text_field :location %><br>
+    <div class="form-group form-control-lg">
+      <%= form_for @listing do |f| %>
+        <%= f.hidden_field :user_id, value: @listing.user.id %>
+        <%= f.label :location %>
+        <%= f.text_field :location %><br>
 
-          <%= f.submit %>
-        <% end %>
-      </div>
-    </form>
+        <%= f.submit %>
+      <% end %>
+    </div>
   </div>
 
 </body>
