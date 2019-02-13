@@ -1,0 +1,2 @@
+class Lister < ApplicationRecord
+end
