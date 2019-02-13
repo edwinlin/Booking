@@ -14,39 +14,29 @@
       <li style="color:red"><%= error %></li>
     <% end %>
   <% end %>
-
-<div class="container">
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-      </li>
-      <li class="nav-item">
-	        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-      </li>
-    </ul>
-  </nav>
+<div class="container text-center-left slogan">
+  <h4>BestBooking!</h4>
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
+<nav class="navbar navbar-expand-lg navbar-light">
+  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+      <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+  </ul>
+</nav>
+
+<div class="container text-center">
 	<h1>Create a New Listing!</h1>
 	  <p>Where is your listing?</p>
 	</div>
-<!-- <div id="form">
-<form class="form-inline">
-  <div class="form-group form-control-lg"> -->
+
   <%= form_for @listing do |f| %>
     <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.label :location %>
     <%= f.text_field :location %><br>
     <%= f.submit %>
   <% end %>
-<!-- </div>
-</form>
-</div> -->
 
 
 </body>

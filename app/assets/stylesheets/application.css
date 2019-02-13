@@ -29,6 +29,25 @@ body {
 display: none;
 }
 
+.navbar {
+  background-color: rgb(204, 221, 255);
+  min-height: 80px;
+  border-bottom: 1px solid #3333ff;
+}
+
+footer {
+  max-height: 60px;
+  border-top: 1px solid #3333ff;
+}
+
+h1 {
+  color: #002b80;
+}
+
+.slogan {
+  max-height: 30px;
+}
+
 
 /* .simple-calendar {
    .day {}

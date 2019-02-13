@@ -31,9 +31,12 @@
 	  </nav>
 	</div>
 
-	<div class="container" style="margin-top:30px">
+<div class="container text-center" style="margin-bottom:0">
+<h1>Hey, <%= @user.name %>!</h1>
+</div>
 
-	  <div class="row">
+<span class="border border-primary"></span>
+<div class="container" style="margin-top:30px">
 
 	    <div class="col-sm">
 	      <h2>Your Listings:</h2>
@@ -65,21 +68,36 @@
         <% end %>
 		</div>
 
-		</div>
+<span class="border border-primary"></span>
 
-	</div>
+<div class="col-sm">
+  <h2>Your Upcoming Bookings:</h2>
+  <% if @user.bookings.empty?%>
+	 You Currently Have No Bookings.
+	<% else %>
+    <ul>
+	  <% @user.bookings.each do |booking| %>
+		<p><%= link_to booking.listing.location, booking_path(booking) %><br>
+		   <strong>Start Date: </strong><%= booking.start_date %><br>
+		   <strong>End Date: </strong><%= booking.end_date %></p>
+		    <% end %>
+	</ul>
+		  <% end %>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-	  <h1>BestBooking!</h1>
-	  <p>All Rights Reserved &trade;</p>
 </div>
+
+<div class="col-sm">
+	listing images
+
+</div>
+
+</div>
+
+</div>
+
+<footer class="fixed-bottom text-center" style="background-color: rgb(204, 221, 255);">
+  <h4>BestBooking!</h3>
+  <p>All Rights Reserved &trade;</p>
+</footer>
 </body>
 </html>
-
-
-
-<%# link_to "Edit Your Profile", edit_user_path(@user) %><br>
-<%# link_to "Create a Listing", create_listing_path %><br>
-<%# link_to "View Listings", listings_path %><br>
-<%# link_to "Sign Out", logout_path, method: :delete %><br>
-<%# link_to "Delete Account", user_path(@user), method: :delete, data: {confirm: "Are you sure you want to delete your account?"} %>
