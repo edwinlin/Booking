@@ -8,28 +8,30 @@
 	<title>Document</title>
 </head>
 <body>
-<div class="container text-center-left slogan">
-  <h4>BestBooking!</h4>
+<div class="container">
+  <img class="logo" src="/images/BestBookingLogo.jpg" alt="logo">
 </div>
+
 <nav class="navbar navbar-expand-lg navbar-light"">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <% if !session[:user_id] %>
+        <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+      <% else %>
         <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
         <a class="nav-link" <%= link_to "Listings", listings_path %></a>
         <% if @listing.user.id == session[:user_id] %>
           <a class="nav-link" <%= link_to "Edit Listing", edit_listing_path(@listing) %></a>
         <% end %>
         <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+      <% end %>
     </ul>
   </nav>
 
-<div class="container text-center" style="margin-bottom:0">
+<div class="container text-center">
 	 <h1><%= @listing.location %></h1>
 	<h3>Listing Owner: <%= link_to @listing.user.name.titleize, lister_show_path(@listing.user) %></h3>
 </div>
-
-
-
-<br>
 
 <h3>Reserve Your Dates:</h3>
 <div class="container">
@@ -41,13 +43,13 @@
   <% bookings.each do |booking| %>
     <div><%= booking.user.name.titleize %></div>
   <% end %>
-<% end %>
+  <% end %>
 </div>
 
 <br>
 
 
-<footer class="text-center" style="background-color: rgb(204, 221, 255);">
+<footer class="text-center">
     <h4>BestBooking!</h3>
     <p>All Rights Reserved &trade;</p>
 </footer>

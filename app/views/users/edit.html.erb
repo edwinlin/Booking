@@ -1,4 +1,13 @@
-<h1>Edit Your User Info!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= stylesheet_link_tag "users" %>
+	<title>Edit Profile</title>
+</head>
+<body>
 
 <% if flash[:error] %>
   <% flash[:error].each do |error| %>
@@ -6,20 +15,49 @@
   <% end %>
 <% end %>
 
-<%= form_for @user do |f| %>
-<%= f.label :name %>
-<%= f.text_field :name %><br>
+<div class="container">
+	<img class="logo" src="/images/BestBookingLogo.jpg" alt="logo">
+</div>
 
-<%= f.label :email %>
-<%= f.text_field :email %><br>
+<nav class="navbar navbar-expand-lg navbar-light">
+	<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+		<a class="nav-link" <%= link_to "Listings", listings_path %></a>
+		<a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+		<a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+	</ul>
+</nav>
 
-<%= f.label :password %>
-<%= f.text_field :password %><br>
+<div class="row">
+    <div class="col">
 
-<%= f.label :password_confirmation %>
-<%= f.text_field :password_confirmation %><br>
+    </div>
+    <div class="col">
+      <h1>Edit Your Profile</h1>
 
-<%= f.submit "Create User" %>
-<% end %>
+		<%= form_for @user do |f| %>
+		<%= f.label :name %>
+		<%= f.text_field :name %><br>
 
-<%= button_to "Delete Profile", user_path(@user), method: :delete, data: {confirm: "Are you sure you'd like to delete your profile?"} %>
+		<%= f.label :email %>
+		<%= f.text_field :email %><br>
+
+		<%= f.label :password %>
+		<%= f.text_field :password %><br>
+
+		<%= f.label :password_confirmation %>
+		<%= f.text_field :password_confirmation %><br>
+
+		<%= f.submit "Update Profile" %>
+		<% end %>
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>
+
+<footer class="fixed-bottom text-center">
+  <h4>BestBooking!</h3>
+  <p>All Rights Reserved &trade;</p>
+</footer>
+</body>

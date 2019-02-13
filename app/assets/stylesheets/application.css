@@ -1,5 +1,6 @@
 //*= require simple_calendar */
 
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
 @import "./listings.scss"
 @import "./bookings.scss"
 @import "./users.scss"
@@ -31,13 +32,14 @@ display: none;
 
 .navbar {
   background-color: rgb(204, 221, 255);
-  min-height: 80px;
+  min-height: 60px;
   border-bottom: 1px solid #3333ff;
 }
 
 footer {
   max-height: 60px;
   border-top: 1px solid #3333ff;
+  background-color: rgb(204, 221, 255);
 }
 
 h1 {
@@ -46,6 +48,10 @@ h1 {
 
 .slogan {
   max-height: 30px;
+}
+
+.logo {
+  max-height: 50px;
 }
 
 
