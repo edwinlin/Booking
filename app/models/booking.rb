@@ -1,5 +1,4 @@
 class Booking < ApplicationRecord
-<<<<<<< HEAD
   belongs_to :listing
   belongs_to :user
 
@@ -19,6 +18,4 @@ class Booking < ApplicationRecord
       errors.add(:end_date, "cannot be before the start date")
     end
   end
-=======
->>>>>>> 5bd4d216025db152cd77994f94acd56d7aff1456
 end
