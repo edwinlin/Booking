@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @listings = Listing.all
+    @lister = User.find(session[:user_id])
   end
 
   def lister_show
@@ -36,6 +36,7 @@ class ListingsController < ApplicationController
 
   def edit
     flash[:error] = nil
+    @lister = User.find(session[:user_id])
   end
 
   def update
@@ -60,7 +61,7 @@ class ListingsController < ApplicationController
   end
 
   def listing_params
-    params.require(:listing).permit(:user_id, :location, :reserved?, :start_date, :end_date)
+    params.require(:listing).permit(:user_id, :location)
   end
 
 end

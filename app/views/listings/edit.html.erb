@@ -25,44 +25,23 @@
   </nav>
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-	<h1>Create a New Listing!</h1>
-	  <p>Where is your listing?</p>  
-	</div> 
-<div id="form">
-<form class="form-inline">
-  <div class="form-group form-control-lg">
-<%= form_for @listing do |f| %>
-  <%= f.hidden_field :user_id, value: @user.id %>
-  <%= f.label :location %>
-  <%= f.text_field :location %><br>
-  <%= f.label :start_date %>
-  <%= f.date_field :start_date %><br>
+  <div class="jumbotron text-center" style="margin-bottom:0">
+  	<h1>Edit Your Listing!</h1>
+	</div>
 
-  <%= f.label :end_date %>
-  <%= f.date_field :end_date %><br>
+  <div id="form">
+    <form class="form-inline">
+      <div class="form-group form-control-lg">
+        <%= form_for @listing do |f| %>
+          <%= f.hidden_field :user_id, value: @listing.user.id %>
+          <%= f.label :location %>
+          <%= f.text_field :location %><br>
 
-  <%= f.submit %>
-<% end %>
-</div>
-</form>
-</div>
-
+          <%= f.submit %>
+        <% end %>
+      </div>
+    </form>
+  </div>
 
 </body>
-
-<h1>Edit a Listing!</h1>
-
-<%= form_for @listing do |f| %>
-
-  <%= f.label :location %>
-  <%= f.text_field :location %><br>
-
-  <%= f.label :start_date %>
-  <%= f.date_field :start_date %><br>
-
-  <%= f.label :end_date %>
-  <%= f.date_field :end_date %><br>
-
-  <%= f.submit %>
-<% end %>
+</html>

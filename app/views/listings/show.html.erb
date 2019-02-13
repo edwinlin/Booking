@@ -15,6 +15,9 @@
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
         <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+        <% if @listing.user.id == session[:user_id] %>
+          <a class="nav-link" <%= link_to "Edit Listing", edit_listing_path(@listing) %></a>
+        <% end %>
         <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
     </ul>
   </nav>
@@ -31,8 +34,10 @@
 <h3>Reserve Your Dates:</h3>
 <div class="container">
 <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
-  <%= link_to date.day, create_booking_path(date, @listing.id) %>
-  <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+  <%=date.day%>
+  <% if @listing.user.id != session[:user_id] %>
+    <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+  <% end %>
   <% bookings.each do |booking| %>
     <div><%= booking.user.name %></div>
   <% end %>

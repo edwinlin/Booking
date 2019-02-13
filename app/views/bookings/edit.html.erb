@@ -12,8 +12,8 @@
 
    <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
 
-     <%= link_to date.day, create_booking_path(date, @booking.listing.id) %>
-     <div id="avail"><%= button_to "Available", create_booking_path(date, @booking.listing.id), method: :get %></div>
+     <%=date.day%>
+     <div id="avail">Available</div>
      <% bookings.each do |booking| %>
        <div><%= link_to "BOOKED", booking_path(booking) %></div>
      <% end %>
