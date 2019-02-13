@@ -11,17 +11,36 @@
 }
 
 .carousel .item {
-    background:#F9F9F9;
-    border:1px solid #E0E0E0;
-    overflow:hidden;
+  background:#F9F9F9;
+  border:1px solid #E0E0E0;
+  overflow:hidden;
+  max-height: 500px;
 }
 
 .carousel-inner > .item > img:hover {
-    border: 1px solid #000000;
+  border: 1px solid #000000;
+}
+
+.list-img {
+  display: flex;
+  justify-content: center;
+}
+
+.book-img {
+   style="max-height:40%;
+   max-width:40%;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;"
+}
+
+img {
+  border-radius: 8px;
 }
 
 .has-events #avail {
-display: none;
+  display: none;
 }
 
 .navbar {
