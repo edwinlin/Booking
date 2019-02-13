@@ -22,10 +22,10 @@
   </nav>
 </div>
 
-<div class="jumbotron text-center" style="margin-bottom:0">
+  <div class="jumbotron text-center" style="margin-bottom:auto; margin-top:auto; align: center;">
 	  <h1>Listings:</h1>
-	  <p>Where would you like to stay?</p>  
-	</div> 
+	  <p>Where would you like to stay?</p>
+	</div>
 
 <br>
 <br>
@@ -34,11 +34,11 @@
  <div class="row justify-content-center">
     <div class="col-4">
      <% @listings.each do |l| %>
-		  <ol><%= link_to l.location, listing_path(l) %></ol>
+		  <p><%= link_to l.location, listing_path(l) %></p>
 		<% end %>
     </div>
     <div class="col-4">
-       
+
     </div>
   </div>
 
