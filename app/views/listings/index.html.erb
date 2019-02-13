@@ -8,27 +8,21 @@
 	<title>Listings</title>
 </head>
 <body>
+<div class="container text-center-left slogan">
+  <h4>BestBooking!</h4>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light"">
+  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+      <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+  </ul>
+</nav>
 
-<div class="container">
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-      </li>
-    </ul>
-  </nav>
+<div class="container text-center">
+  <h1>Listings</h1>
+  <h6>Where would you like to stay?</h6>
 </div>
 
-  <div class="jumbotron text-center" style="margin-bottom:auto; margin-top:auto; align: center;">
-	  <h1>Listings:</h1>
-	  <p>Where would you like to stay?</p>
-	</div>
-
-<br>
-<br>
 <br>
 
  <div class="row justify-content-center">
@@ -43,9 +37,9 @@
   </div>
 
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-	  <h1>BestBooking!</h1>
-	  <p>All Rights Reserved &trade;</p>
-</div>
+<footer class="text-center" style="background-color: rgb(204, 221, 255);">
+    <h4>BestBooking!</h3>
+    <p>All Rights Reserved &trade;</p>
+</footer>
 </body>
 </html>

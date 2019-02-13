@@ -8,42 +8,26 @@
 	<title>User Bookings</title>
 </head>
 <body>
-	<div class="jumbotron text-center" style="margin-bottom:0">
-	  <h1>Hey, <%= @user.name %>!</h1>
-	</div>
-<div class="container">
-  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "Edit Booking", edit_booking_path %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "Delete Booking", booking_path(@booking), method: :delete, data: {confirm: 'Delete Booking?'} %></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" <%= link_to "View Profile", user_path(@booking.user) %></a>
-      </li>
-    </ul>
-  </nav>
+<div class="container text-center-left slogan">
+  <h4>BestBooking!</h4>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+    <a class="nav-link" <%= link_to "Edit Booking", edit_booking_path %></a>
+    <a class="nav-link" <%= link_to "Delete Booking", booking_path(@booking), method: :delete, data: {confirm: 'Delete Booking?'} %></a>
+    <a class="nav-link" <%= link_to "View Profile", user_path(@booking.user) %></a>
+  </ul>
+</nav>
+
+<div class="container text-center" style="margin-bottom:0">
+    <h1>Hey,<%= @user.name %>!</h1>
 </div>
 
-<!-- <h2>Here are your upcoming Booking Info:</h2>
-<h3>Address: <%# link_to @booking.listing.location, listing_path(@booking.listing) %></h3>
-<h3>Start Date: <%# @booking.start_date %></h3>
-<h3>End Date: <%# @booking.end_date %></h3> -->
 
-<br>
-<br>
-<br>
-
-
-
-<div id="blist" class="list-group">
+<div id="blist" class="list-group ">
 	<div class="list-group-item", class="container">
-<h4 class="lead">Here are your upcoming Bookings, <%= @booking.user.name.capitalize %>:</h2>
+<h4 class="lead">Here's your upcoming booking, <%= @booking.user.name.capitalize %>:</h2>
 <h5>Address: <%= link_to @booking.listing.location, listing_path(@booking.listing) %></h3>
 <h4 class="font-weight-light">Start Date: <%= @booking.start_date %></h3>
 <h4 class="font-weight-light">End Date: <%= @booking.end_date %></h3>
@@ -51,10 +35,10 @@
 </div>
 
 
-<div class="jumbotron text-center" style="margin-bottom:0">
-	  <h1>BestBooking!</h1>
+<footer class="text-center" style="background-color: rgb(204, 221, 255);">
+	  <h4>BestBooking!</h3>
 	  <p>All Rights Reserved &trade;</p>
-</div>
+</footer>
 
 </body>
 </html>
