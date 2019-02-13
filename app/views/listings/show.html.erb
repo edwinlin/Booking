@@ -1,28 +1,50 @@
 <!DOCTYPE html>
-<html lang=“en” dir=“ltr”>
- <head>
-   <meta charset=“utf-8”>
-   <link rel=“stylesheet” href=“app/assets/stylesheets/application.css”>
-   <title></title>
- </head>
- <body>
-   <h1><%= @listing.location %></h1>
-   <h3>Lister: <%= link_to @listing.user.name, lister_show_path(@listing.user) %></h3>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag "listings" %>
+	<title>Document</title>
+</head>
+<body>
+<div class="container text-center-left slogan">
+  <h4>BestBooking!</h4>
+</div>
+<nav class="navbar navbar-expand-lg navbar-light"">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+        <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+    </ul>
+  </nav>
 
-   <h3>Reserve Your Dates:</h3>
+<div class="container text-center" style="margin-bottom:0">
+	 <h1><%= @listing.location %></h1>
+	<h3>Listing Owner: <%= link_to @listing.user.name.capitalize, lister_show_path(@listing.user) %></h3>
+</div>
 
-   <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
 
-     <%= link_to date.day, create_booking_path(date, @listing.id) %>
-     <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
-     <% bookings.each do |booking| %>
-       <div>BOOKED</div>
-     <% end %>
-   <% end %>
 
-   <br>
-   <%# link_to “Edit Listing”, edit_listing_path %>
+<br>
 
-   <%= link_to "View All Listings", listings_path %>
- </body>
+<h3>Reserve Your Dates:</h3>
+<div class="container">
+<%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
+  <%= link_to date.day, create_booking_path(date, @listing.id) %>
+  <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+  <% bookings.each do |booking| %>
+    <div><%= booking.user.name %></div>
+  <% end %>
+<% end %>
+</div>
+
+<br>
+
+
+<footer class="text-center" style="background-color: rgb(204, 221, 255);">
+    <h4>BestBooking!</h3>
+    <p>All Rights Reserved &trade;</p>
+</footer>
+</body>
 </html>

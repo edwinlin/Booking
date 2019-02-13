@@ -1,3 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= stylesheet_link_tag "listings" %>
+	<title>Edit Listing</title>
+</head>
+<body>
+
+<div class="container">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+      </li>
+      <li class="nav-item">
+	        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="jumbotron text-center" style="margin-bottom:0">
+	<h1>Create a New Listing!</h1>
+	  <p>Where is your listing?</p>  
+	</div> 
+<div id="form">
+<form class="form-inline">
+  <div class="form-group form-control-lg">
+<%= form_for @listing do |f| %>
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <%= f.label :location %>
+  <%= f.text_field :location %><br>
+  <%= f.label :start_date %>
+  <%= f.date_field :start_date %><br>
+
+  <%= f.label :end_date %>
+  <%= f.date_field :end_date %><br>
+
+  <%= f.submit %>
+<% end %>
+</div>
+</form>
+</div>
+
+
+</body>
+
 <h1>Edit a Listing!</h1>
 
 <%= form_for @listing do |f| %>
