@@ -1,5 +1,5 @@
 class Booking < ApplicationRecord
-	
+
 
   belongs_to :listing
   belongs_to :user
@@ -7,6 +7,13 @@ class Booking < ApplicationRecord
   validates_presence_of :start_date, :end_date
 
   validate :end_date_is_after_start_date
+
+
+
+	def to_d
+		%Q(#{self.start_date.strftime("%B %-d, %Y")} -
+		#{self.end_date.strftime("%B %-d, %Y")})
+	end
 
 
   #######

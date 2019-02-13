@@ -52,19 +52,24 @@
         <ul>
     	  <% @user.bookings.each do |booking| %>
     		<p><%= link_to booking.listing.location, booking_path(booking) %><br>
-    		   <strong>Start Date: </strong><%= booking.start_date %><br>
-    		   <strong>End Date: </strong><%= booking.end_date %></p>
+    		   <strong>Dates: </strong><%= booking.to_d %><br>
           <% end %>
     	</ul>
     	<% end %>
 
     </div>
 
+    <span class="border border-primary"></span>
+
     <div class="col-sm">
-    	listing images
+      <ul>
+         <img src="/images/<%= @random_image %>" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+      </ul><br>
     </div>
 
+
   </div>
+<%# <%= image_tag Dir.new(Rails.root.to_s + "/app/assets/images").to_a.select{|f| f.downcase.match(/\.jpg|\.jpeg|\.png/) }.sample  %>
 
 </div>
 

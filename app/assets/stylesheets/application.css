@@ -20,6 +20,7 @@
     background:#F9F9F9;
     border:1px solid #E0E0E0;
     overflow:hidden;
+    height: 500px;
 }
 
 .carousel-inner > .item > img:hover {
@@ -44,6 +45,10 @@ footer {
 
 h1 {
   color: #002b80;
+}
+
+img {
+  border-radius: 8px;
 }
 
 .slogan {

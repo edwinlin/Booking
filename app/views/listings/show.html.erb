@@ -15,6 +15,7 @@
 <nav class="navbar navbar-expand-lg navbar-light"">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <% if !session[:user_id] %>
+        <a class="nav-link" <%= link_to "Login", new_session_path, method: :get %></a>
         <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
         <a class="nav-link" <%= link_to "Listings", listings_path %></a>
       <% else %>
@@ -33,12 +34,19 @@
 	<h3>Listing Owner: <%= link_to @listing.user.name.titleize, lister_show_path(@listing.user) %></h3>
 </div>
 
+
+<ul>
+   <img src="/images/<%= @random_image%>" style="max-height:40%; max-width:40%; display: block; margin-left: auto; margin-right: auto; width: 50%;">
+</ul><br>
+
 <h3>Reserve Your Dates:</h3>
 <div class="container">
 <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
   <%=date.day%>
   <% if @listing.user.id != session[:user_id] %>
-    <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+    <% if session[:user_id] %>
+      <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+    <% end %>
   <% end %>
   <% bookings.each do |booking| %>
     <div><%= booking.user.name.titleize %></div>
