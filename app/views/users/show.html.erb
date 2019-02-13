@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div class="jumbotron text-center" style="margin-bottom:0">
-	  <h1>Hey, <%= @user.name %>!</h1>
+	  <h1>Hey, <%= @user.name.capitalize %>!</h1>
 	</div>
 
 	<div class="container">
@@ -37,23 +37,32 @@
 
 	    <div class="col-sm">
 	      <h2>Your Listings:</h2>
-	    	<ul>
-		  		<% @user.listings.each do |listing| %>
-			    <li class="nav-link active" ><%= link_to listing.location, listing_path(listing) %></li>
-				<% end %>
-			</ul>
-		</div>
+
+        <% if @user.listings.empty?%>
+        <li>You Currently Have No Listings.</li>
+        <% else %>
+         <ul>
+           <% @user.listings.each do |listing| %>
+             <li class="nav-link active"><%= link_to listing.location, listing_path(listing) %></li>
+           <% end %>
+         </ul>
+        <% end %>
+  		</div>
 
 	    <div class="col-sm">
 	      <h2>Your Upcoming Bookings:</h2>
+        <% if @user.bookings.empty? %>
+        <li>You Currently Have No Bookings.</li>
+        <% else %>
 		    <ul>
 			  <% @user.bookings.each do |booking| %>
 			    <li> Address: <%= link_to booking.listing.location, booking_path(booking) %>
 				    <p>Start Date: <%= booking.start_date %></p>
 				    <p>End Date: <%= booking.end_date %></p>
-				</li>
+				  </li>
 				  <% end %>
 			</ul>
+        <% end %>
 		</div>
 
 		</div>
