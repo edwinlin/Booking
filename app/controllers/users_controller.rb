@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
-    @images  = ["ppl-1.jpeg", "ppl-2.jpeg", "ppl-3.jpeg", "ppl-4.jpeg", "ppl-5.jpeg", "ppl-6.jpeg", "ppl-7.jpeg", "ppl-8.jpeg", "ppl-9.jpeg", "ppl-10.jpeg", "ppl-11.jpeg", "ppl-12.jpeg", "ppl-13.jpeg", "ppl-14.jpeg", "ppl-15.jpeg", "ppl-16.jpeg", "ppl-17.jpeg", "ppl-18.jpeg", "ppl-19.jpeg", "ppl-20.jpeg", "ppl-21.jpeg", "ppl-22.jpeg", "ppl-23.jpeg", "ppl-24.jpeg", "ppl-25.jpeg", "ppl-26.jpeg"]
+    @images  = ["ppl-1.jpeg", "ppl-2.jpeg", "ppl-3.jpeg", "ppl-4.jpeg", "ppl-5.jpeg", "ppl-6.jpeg", "ppl-7.jpeg", "ppl-8.jpeg", "ppl-9.jpeg", "ppl-10.jpeg", "ppl-11.jpeg", "ppl-13.jpeg", "ppl-14.jpeg", "ppl-15.jpeg", "ppl-16.jpeg", "ppl-17.jpeg", "ppl-18.jpeg", "ppl-19.jpeg", "ppl-20.jpeg", "ppl-21.jpeg", "ppl-22.jpeg", "ppl-23.jpeg", "ppl-24.jpeg", "ppl-25.jpeg", "ppl-26.jpeg"]
     @random_no = rand(25)
     @random_image = @images[@random_no]
   end
@@ -50,6 +50,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :img_url)
   end
 end

@@ -22,7 +22,7 @@
 </nav>
 
 <div class="container text-center">
-	<h1>Hi, <%= @user.name %>!</h1>
+	<h1>Hi, <%= @user.name.titleize %>!</h1>
 </div>
 
 <div class="container" style="margin-top:30px">
@@ -32,7 +32,11 @@
 
 <div class="col-sm">
     <ul>
-       <img src="/images/<%= @random_image %>" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+      <% if @user.img_url %>
+        <%= image_tag @user.img_url %>
+      <% else %>
+        <img src="/images/<%= @random_image %>" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+      <% end %>
     </ul><br>
 </div>
 

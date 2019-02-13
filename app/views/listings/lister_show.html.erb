@@ -1,6 +1,57 @@
-<h1><%= @lister.name.titleize %>'s Listing Profile</h1>
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+  	<meta charset="UTF-8">
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag "listings" %>
+  	<title>Document</title>
+  </head>
+  <body>
+  <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
 
-<h3>Properties:</h3>
-<% @lister.listings.each do |listing| %>
-  <li><%= link_to listing.location, listing_path(listing) %></li><br>
-<% end %>
+  <nav class="navbar navbar-expand-lg navbar-light"">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <% if !session[:user_id] %>
+          <a class="nav-link" <%= link_to "Login", new_session_path, method: :get %></a>
+          <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+          <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+        <% else %>
+          <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+          <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+          <% if @lister == session[:user_id] %>
+            <a class="nav-link" <%= link_to "Edit Listing", edit_listing_path(@listing) %></a>
+          <% end %>
+          <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+        <% end %>
+      </ul>
+    </nav>
+
+    <h1><%= @lister.name.titleize %>'s Listing Profile</h1>
+
+    <ul>
+      <% if @lister.img_url %>
+        <%= image_tag @lister.img_url %>
+      <% else %>
+        <img src="/images/<%= @random_image %>" style="max-height:40%; max-width:40%;">
+      <% end %>
+    </ul><br>
+
+    <h3>Properties:</h3>
+      <% if !@lister.listings.empty? %>
+        <% @lister.listings.each do |listing| %>
+          <li><%= link_to listing.location, listing_path(listing) %></li><br>
+        <% end %>
+      <% else %>
+        <li>You currently have zero listings</li>
+      <% end %>
+
+  <br>
+
+
+  <footer class="text-center">
+      <h4>BestBooking!</h4>
+      <p>All Rights Reserved &trade;</p>
+  </footer>
+  </body>
+  </html>
