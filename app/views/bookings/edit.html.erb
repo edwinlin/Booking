@@ -6,26 +6,40 @@
    <title></title>
  </head>
  <body>
-   <h1><%= @booking.listing.location %></h1>
+   <!-- <h1><%# @booking.listing.location %></h1>
 
    <h1>Edit a Booking!</h1>
 
-   <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
+   <%# month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
 
-     <%=date.day%>
+     <%#date.day%>
      <div id="avail">Available</div>
-     <% bookings.each do |booking| %>
-       <div><%= link_to "BOOKED", booking_path(booking) %></div>
-     <% end %>
-   <% end %>
+     <%# bookings.each do |booking| %>
+       <div><%# link_to "BOOKED", booking_path(booking) %></div>
+     <%# end %>
+   <%# end %>
 
-   <% if flash[:error] %>
-     <% flash[:error].each do |error| %>
-       <li style="color:red"><%= error %></li>
-     <% end %>
-   <% end %>
+  <%# if flash[:error] %>
+     <%# flash[:error].each do |error| %>
+       <li style="color:red"><%# error %></li>
+     <%# end %>
+   <%# end %> -->
 
-   <%= form_for @booking do |f| %>
+  <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <a class="nav-link bklink" <%= link_to "All Listings", listings_path %></a>
+      <a class="nav-link bklink" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+      <a class="nav-link bklink" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+    </ul>
+  </nav>
+
+  <div class="container text-center">
+   <h1><%= @booking.listing.location %></h1>
+   <h1>Edit Your Booking</h1>
+
+    <%= form_for @booking do |f| %>
 
      <%= f.label :start_date %>
      <%= f.date_field :start_date %><br>
@@ -33,12 +47,26 @@
      <%= f.label :end_date %>
      <%= f.date_field :end_date%><br>
 
-     <%= f.submit %>
+     <%= f.submit "Edit Booking"%>
    <% end %>
 
-   <br>
-   <%# link_to “Edit Listing”, edit_listing_path %>
+  </div>
 
-   <%= link_to "View All Listings", listings_path %>
- </body>
+  <div>
+   <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
+
+     <%=date.day%>
+     <div id="avail"><%="Available"%></div>
+     <% bookings.each do |booking| %>
+       <div><%= link_to "BOOKED", booking_path(booking) %></div>
+     <% end %>
+   <% end %>
+  </div>
+
+
+  <footer class="fixed-bottom text-center">
+    <h4>BestBooking!</h4>
+    <p>All Rights Reserved &trade;</p>
+  </footer>
+  </body>
 </html>

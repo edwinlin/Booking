@@ -11,8 +11,8 @@ class Booking < ApplicationRecord
 
 
 	def to_d
-		%Q(#{self.start_date.strftime("%B %-d, %Y")} -
-		#{self.end_date.strftime("%B %-d, %Y")})
+		%Q(#{self.start_date.strftime("%b %-d, %Y")} -
+		#{self.end_date.strftime("%b %-d, %Y")})
 	end
 
 

@@ -8,9 +8,7 @@
 	<title>Document</title>
 </head>
 <body>
-<div class="container">
-  <img class="logo" src="/images/BestBookingLogo.jpg" alt="logo">
-</div>
+<a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
 
 <nav class="navbar navbar-expand-lg navbar-light"">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -39,7 +37,7 @@
    <img src="/images/<%= @random_image%>" style="max-height:40%; max-width:40%; display: block; margin-left: auto; margin-right: auto; width: 50%;">
 </ul><br>
 
-<h3>Reserve Your Dates:</h3>
+<h3 style="display:block; margin-left:auto; margin-right:auto; width:81.5%;">Reserve Your Dates:</h3>
 <div class="container">
 <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
   <%=date.day%>
@@ -58,7 +56,7 @@
 
 
 <footer class="text-center">
-    <h4>BestBooking!</h3>
+    <h4>BestBooking!</h4>
     <p>All Rights Reserved &trade;</p>
 </footer>
 </body>
