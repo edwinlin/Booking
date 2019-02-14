@@ -3,6 +3,12 @@
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Roboto|Comfortaa');
 
 
+.logo {
+  margin-left: 20px;
+}
+
+
+
 
 .photos {
   display: flex;
@@ -233,9 +239,7 @@ h4 {
   max-height: 30px;
 }
 
-.logo {
-  margin-left: 20px;
-}
+
 
 a.bklink {
   color: rgba(0,0,0,.5);
