@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="UTF-8">
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<!-- <%= stylesheet_link_tag "users" %> -->
+  	<title>Profile</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "All Listings", listings_path %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "Create a Listing", create_listing_path %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "Edit Your Profile", edit_user_path(@user) %></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-align-right" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+  <div class="container text-center">
+  	<h1>Hi, <%= @user.name.titleize %>!</h1>
+  </div>
+
+  <div class="container" style="margin-top:30px">
+    <div class="row">
+
+      <div class="col-sm">
+        <ul>
+           <img src="/images/<%= @random_image %>" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+        </ul><br>
+      </div>
+
+      <span class="border border-primary"></span>
+
+      <div class="col-sm">
+        <h2 class="text-center">Your Upcoming Bookings:</h2>
+          <% if @user.bookings.empty?%>
+          	 <li>You Currently Have No Bookings.</li>
+          	<% else %>
+            <ul>
+          	  <% @user.bookings.each do |booking| %>
+            		<li><%= link_to booking.listing.location, booking_path(booking) %><br>
+            		   <strong>Dates: </strong><%= booking.to_d %></li><br>
+              <% end %>
+          	</ul>
+        	<% end %>
+      </div>
+
+      <span class="border border-primary"></span>
+
+      <div class="col-sm">
+        <h2>Your Listings:</h2>
+      	  <% if @user.listings.empty?%>
+      	    <li>You Currently Have No Listings.</li>
+      	  <% else %>
+      	   <ul>
+      	     <% @user.listings.each do |listing| %>
+      	       <li><%= link_to listing.location, listing_path(listing) %></li><br>
+      	     <% end %>
+      	   </ul>
+        	<% end %>
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer class="fixed-bottom text-center">
+    <h4>BestBooking!</h4>
+    <p>All Rights Reserved &trade;</p>
+  </footer>
+  </body>
+</html>

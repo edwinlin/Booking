@@ -1,53 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%= stylesheet_link_tag "users" %>
-	<title>Create Profile</title>
-</head>
-<body>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
 
-<nav class="navbar navbar-expand-md">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" <%= link_to "Back", welcome_1_path %></a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <%= stylesheet_link_tag "application" %>
 
-<div class="row">
-    <div class="col">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- <%= stylesheet_link_tag "users" %> -->
+    <title>Welcome to Best Booking!</title>
+  </head>
+  <body>
 
-    </div>
-    <div class="col">
-      <h1>Log In!</h1>
+    <div class="view" style="background-image: url('https://img1.coastalliving.timeinc.net/sites/default/files/styles/4_3_horizontal_inbody_900x506/public/image/2016/06/main/white-bedroom-ocean-view-bed16_foul.jpg?itok=2BfoCEjV'); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 0.80;">
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-light align-items-center">
+            <!-- Content -->
+            <img src="/images/BestBookingTransparent.jpg" style="margin-left: 25px; margin-top: 20px;">
+            <div class="container">
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-md-12 mb-4 text-center">
 
-      <%= form_tag "/login" do %>
-        <%= label_tag :email %>
-        <%= email_field_tag :email %><br>
-        <%= label_tag :password %>
-        <%= password_field_tag :password %><br>
-        <%= submit_tag "Log In" %>
-      <% end %>
+                  <h1 id="welcomeheader">Welcome to BestBooking!</h1><br>
 
-    </div>
-    <div class="col">
+                </div>
+                <div class="card align-center" style="width: auto; background-color:transparent; margin-left:auto; padding: 25px; border-radius: 20px; margin-right: auto; background-color: rgba(0, 0, 0, 0.25);">
+                  <div id="login" class="card-body col text-center">
+                    <%= form_tag "/login" do %><br>
+                      <%= label_tag :email %><br>
+                      <%= email_field_tag :email %><br><br>
+                      <%= label_tag :password %><br>
+                      <%= password_field_tag :password %><br><br>
+                      <%= submit_tag "Log In" %><br>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <!--Grid row-->
+            </div>
+            <!-- Content -->
+          </div>
+          <!-- Mask & flexbox options-->
+        </div>
 
-    </div>
-  </div>
-
-<footer class="fixed-bottom text-center">
-  <h4>BestBooking!</h4>
-  <p>All Rights Reserved &trade;</p>
-</footer>
-</body>
+  </body>
+</html>
