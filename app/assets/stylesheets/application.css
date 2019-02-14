@@ -2,6 +2,17 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Roboto|Comfortaa');
 
+#login {
+  font-size: 16pt;
+  font-family: Comfortaa;
+}
+
+#welcomeheader {
+  font-size: 36pt;
+  font-family: Montserrat;
+  font-weight: bold;
+  color: rgb(63, 98, 177);
+}
 
 .logo {
   margin-left: 20px;

@@ -69,11 +69,11 @@
                 </div>
                 <br>
                 <br>
-                <div class="card" style="width: 18rem; background-color:transparent; margin-left:32%; background-color: rgba(0, 0, 0, 0.25);">
+                <div class="card" style="width: 18rem; background-color:transparent; margin-left:38%; background-color: rgba(0, 0, 0, 0.25);">
                   <div class="card-body col text-center">
                     <%= form_for @listing do |f| %>
                     <%= f.hidden_field :user_id, value: @user.id %><br>
-                    <%= f.label :location %><br>
+                    <div style="color:white;"><%= f.label :location %></div><br>
                     <%= f.text_field :location %><br><br>
                     <%= f.label :img_url, "Upload Image"%><br>
                     <%= f.text_field :img_url%><br><br><br>
