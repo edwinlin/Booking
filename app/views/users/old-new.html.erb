@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<%= stylesheet_link_tag "users" %>
-	<title>Edit Profile</title>
+	<title>Create Profile</title>
 </head>
 <body>
 
@@ -14,7 +14,6 @@
     <%= error %>
   <% end %>
 <% end %>
-
 <nav class="navbar navbar-expand-md">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
@@ -24,29 +23,22 @@
             <li class="nav-item">
                 <a class="nav-link" <%= link_to "Listings", listings_path %></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" <%= link_to "Create a Listing", create_listing_path %></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-            </li>
-        </ul>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link text-align-right" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-            </li>
         </ul>
     </div>
 </nav>
+
+<% if flash[:error] %>
+  <% flash[:error].each do |error| %>
+    <li style="color:red"><%= error %></li>
+  <% end %>
+<% end %>
 
 <div class="row">
     <div class="col">
 
     </div>
     <div class="col">
-      <h1>Edit Your Profile</h1>
+      <h1>Create Your Profile</h1>
 
 		<%= form_for @user do |f| %>
 		<%= f.label :name %>
@@ -61,10 +53,10 @@
 		<%= f.label :password_confirmation %>
 		<%= f.text_field :password_confirmation %><br>
 
-		<%= f.label :img_url %>
-		<%= f.text_field :img_url %><br>
+    <%= f.label :img_url %>
+    <%= f.text_field :img_url %><br>
 
-		<%= f.submit "Update Profile" %>
+		<%= f.submit "Create Profile" %>
 		<% end %>
     </div>
     <div class="col">
