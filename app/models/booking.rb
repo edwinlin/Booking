@@ -1,5 +1,7 @@
 class Booking < ApplicationRecord
 
+  attr_accessor :temp_start, :temp_end
+
 
   belongs_to :listing
   belongs_to :user

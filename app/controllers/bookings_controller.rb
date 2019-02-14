@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
 
   def new
    @booking = Booking.new
+   flash[:error] = nil
    flash[:notice] = nil
    if Date.parse(params[:start_date]) < Date.today
      flash[:notice] = "Earliest booking date is #{Date.today}"
@@ -35,13 +36,30 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    flash[:notice] = nil
     flash[:error] = nil
   end
 
   def update
     @booking.update(booking_params)
+    @booking.start_date = @booking.temp_start
+    @booking.end_date = @booking.temp_end
     if @booking.valid?
-      redirect_to booking_path(@booking)
+     books = @booking.listing.bookings.map{|k,v|{k.id=>k.start_date..k.end_date}}
+     not_rejected = books.reject{|h|h[@booking.id]}
+     ranged = not_rejected.map{|h|h.values}.flatten
+
+     temp_updated_dates = @booking.start_date..@booking.end_date
+     temp_updated_dates.each do |d|
+       ranged.each do |r|
+         if r.cover?d
+           flash[:notice] = "Listing already booked for those days"
+           return render :edit
+         end
+       end
+     end
+     @booking.save
+     redirect_to booking_path(@booking)
     else
       flash[:error] = @booking.errors.full_messages
       render :edit
@@ -60,7 +78,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:listing_id, :user_id, :start_date, :end_date)
+    params.require(:booking).permit(:listing_id, :user_id, :start_date, :end_date, :temp_start, :temp_end)
   end
 
 end
