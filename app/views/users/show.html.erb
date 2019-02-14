@@ -24,13 +24,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                  <a class="nav-link-1" <%= link_to "Edit Your Profile", edit_user_path(@user) %></a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link-1" <%= link_to "All Listings", listings_path %></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link-1" <%= link_to "Create a Listing", create_listing_path %></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link-1" <%= link_to "Edit Your Profile", edit_user_path(@user) %></a>
                 </li>
               </ul>
               <form class="form-inline">

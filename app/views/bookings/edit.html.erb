@@ -1,72 +1,115 @@
 <!DOCTYPE html>
-<html lang=“en” dir=“ltr”>
- <head>
-   <meta charset=“utf-8”>
-   <link rel=“stylesheet” href=“app/assets/stylesheets/application.css”>
-   <title></title>
- </head>
- <body>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Edit Booking</title>
+</head>
+<body>
+    <% if flash[:error] %>
+      <% flash[:error].each do |error| %>
+        <li style="color:red"><%= error %></li>
+      <% end %>
+    <% end %>
 
-  <% if flash[:error] %>
-     <% flash[:error].each do |error| %>
-       <li style="color:red"><%= error %></li>
-     <% end %>
-   <% end %>
-  <li style="color:red"><%= flash[:notice] %></li>
+    <% if flash[:notice] %>
+      <% flash[:notice].each do |notice| %>
+          <li style="color:red"><%= notice %></li>
+      <% end %>
+    <% end %>
+      <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="position:absolute">
+          <div class="container">
+            <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link-1" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link-1" <%= link_to "All Listings", listings_path %></a>
+                </li>
+              </ul>
+              <form class="form-inline">
+                <a class="nav-link text-align-right blue" <%= link_to "Delete Booking", booking_path(@booking), method: :delete, data: {confirm: "Are you sure you want to delete your booking?"} %></a>
+                <a class="nav-link text-align-right blue" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+              </form>
+            </div>
+          </div>
+        </nav>
+        <!-- Navbar -->
 
-   <nav class="navbar navbar-expand-md">
-       <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-           <ul class="navbar-nav mr-auto">
-               <li class="nav-item">
-                   <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-               </li>
-           </ul>
-       </div>
-       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-           <ul class="navbar-nav ml-auto">
-               <li class="nav-item">
-                   <a class="nav-link text-align-right" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-               </li>
-           </ul>
-       </div>
-   </nav>
+        <!-- Full Page Intro -->
+        <div class="view" style="background-image: url('http://s3.amazonaws.com/nocnok/casa-minimalista-v1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 0.90;">
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-light align-items-center">
+            <!-- Content -->
+            <div class="container">
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-md-12 mb-4 white-text text-center">
+                  <br>
+                  <br>
+                  <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Edit Your Booking!</strong></h1><br>
+                  <!-- <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s"> -->
+                </div>
+                <br>
+                <br>
+                <div class="card" style="width: 18rem; background-color:transparent; margin-left:37%; background-color: rgba(0, 0, 0, 0.25);">
+                  <div class="card-body col text-center">
+                    <% @booking.temp_start = @booking.start_date %>
+                     <% @booking.temp_end = @booking.end_date %>
 
-   <% @booking.temp_start = @booking.start_date %>
-    <% @booking.temp_end = @booking.end_date %>
-      <div class="container text-center">
-       <h1><%= @booking.listing.location %></h1>
-       <h1>Edit Your Booking</h1>
+                     <h4><%= @booking.listing.location %></h4>
+                       <div class="container text-center">
+                         <%= form_for @booking do |f| %>
+                          <%= f.label :start_date %>
+                          <%= f.date_field :temp_start, min: Date.today %><br><br>
 
-        <%= form_for @booking do |f| %>
-         <%= f.label :start_date %>
-         <%= f.date_field :temp_start, min: Date.today %><br>
+                          <%= f.label :end_date %>
+                          <%= f.date_field :temp_end, min: Date.today%><br><br>
+                          <%= f.submit class: "btn btn-dark"%>
+                        <% end %>
+                  </div>
+                </div>
+              </div>
+              <!--Grid row-->
+            </div>
+            <!-- Content -->
+          </div>
+          <!-- Mask & flexbox options-->
+        </div>
+        <!-- Full Page Intro -->
+      </header>
+      <!-- Main navigation -->
+      <!--Main Layout-->
+      <main>
 
-         <%= f.label :end_date %>
-         <%= f.date_field :temp_end, min: Date.today%><br>
-         <%= f.submit "Edit Booking"%>
-       <% end %>
+        <br><div class="container" style="background-color: rgba(0, 0, 0, 0.3); border-radius: 8px;">
+         <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
 
-  <div>
-   <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
+           <%=date.day%>
+           <div id="avail"><%="Available"%></div>
+           <% bookings.each do |booking| %>
+             <div><%= link_to "BOOKED", booking_path(booking) %></div>
+           <% end %>
+         <% end %>
+        </div>
 
-     <%=date.day%>
-     <div id="avail"><%="Available"%></div>
-     <% bookings.each do |booking| %>
-       <div><%= link_to "BOOKED", booking_path(booking) %></div>
-     <% end %>
-   <% end %>
-  </div>
+      </main>
+      <!--Main Layout-->
 
 
-  <footer class="fixed-bottom text-center">
-    <h4>BestBooking!</h4>
-    <p>All Rights Reserved &trade;</p>
-  </footer>
-  </body>
+      <footer class="text-center">
+          <h4>BestBooking!</h4>
+          <p>All Rights Reserved &trade;</p>
+      </footer>
+
+    </body>
 </html>

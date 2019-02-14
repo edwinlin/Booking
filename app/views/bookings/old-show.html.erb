@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  	<meta charset="UTF-8">
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<%= stylesheet_link_tag "bookings" %>
+  	<title>User Bookings</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-md">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" <%= link_to "View Profile", user_path(@booking.user) %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "Edit Booking", edit_booking_path %></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "Delete Booking", booking_path(@booking), method: :delete, data: {confirm: 'Delete Booking?'} %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-align-right" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+  <div class="container text-center" style="margin-bottom:0">
+      <h1>Hey, <%= @user.name.titleize %>!</h1>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div id="blist" class="list-group ">
+      	<div class="list-group-item", class="container">
+          <h4 class="lead">Here's your upcoming booking, <%= @booking.user.name.titleize %>:</h4>
+          Address: <%= link_to @booking.listing.location, listing_path(@booking.listing) %><br>
+          <strong>Dates: </strong><%= @booking.to_d %><br>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-8">
+      <% if @booking.listing.img_url %>
+        <div class="book-img"><%= image_tag @booking.listing.img_url %></div>
+      <% else %>
+        <img src="/images/<%= @random_image %>" style="max-height:40%; max-width:40%; display: block; margin-left: auto; margin-right: auto; width: 50%;">
+      <% end %>
+    </div>
+
+  </div>
+
+  <footer class="fixed-bottom text-center">
+    <h4>BestBooking!</h4>
+    <p>All Rights Reserved &trade;</p>
+  </footer>
+
+  </body>
+</html>

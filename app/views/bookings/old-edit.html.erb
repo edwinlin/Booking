@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang=“en” dir=“ltr”>
+ <head>
+   <meta charset=“utf-8”>
+   <link rel=“stylesheet” href=“app/assets/stylesheets/application.css”>
+   <title></title>
+ </head>
+ <body>
+
+  <% if flash[:error] %>
+     <% flash[:error].each do |error| %>
+       <li style="color:red"><%= error %></li>
+     <% end %>
+   <% end %>
+  <li style="color:red"><%= flash[:notice] %></li>
+
+   <nav class="navbar navbar-expand-md">
+       <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+           <ul class="navbar-nav mr-auto">
+               <li class="nav-item">
+                   <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+               </li>
+               <li class="nav-item">
+                 <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+               </li>
+               <li class="nav-item">
+                   <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+               </li>
+           </ul>
+       </div>
+       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+           <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                 <a class="nav-link text-align-right" <%= link_to "Delete Booking", booking_path(@booking), method: :delete %></a>
+                  <a class="nav-link text-align-right" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+               </li>
+           </ul>
+       </div>
+   </nav>
+
+   <% @booking.temp_start = @booking.start_date %>
+    <% @booking.temp_end = @booking.end_date %>
+      <div class="container text-center">
+       <h1><%= @booking.listing.location %></h1>
+       <h1>Edit Your Booking</h1>
+
+        <%= form_for @booking do |f| %>
+         <%= f.label :start_date %>
+         <%= f.date_field :temp_start, min: Date.today %><br>
+
+         <%= f.label :end_date %>
+         <%= f.date_field :temp_end, min: Date.today%><br>
+         <%= f.submit "Edit Booking"%>
+       <% end %>
+
+  <div>
+   <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @booking.listing.bookings) do |date, bookings| %>
+
+     <%=date.day%>
+     <div id="avail"><%="Available"%></div>
+     <% bookings.each do |booking| %>
+       <div><%= link_to "BOOKED", booking_path(booking) %></div>
+     <% end %>
+   <% end %>
+  </div>
+
+
+  <footer class="fixed-bottom text-center">
+    <h4>BestBooking!</h4>
+    <p>All Rights Reserved &trade;</p>
+  </footer>
+  </body>
+</html>

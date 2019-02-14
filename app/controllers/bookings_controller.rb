@@ -9,17 +9,17 @@ class BookingsController < ApplicationController
 
   def show
     @user = User.find(session[:user_id])
-    @images  = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "8.jpeg", "9.jpeg", "10.jpeg", "11.jpeg", "12.jpeg", "13.jpeg", "14.jpeg", "15.jpeg", "16.jpeg", "17.jpeg", "18.jpeg", "19.jpeg", "21.jpeg", "22.jpeg", "23.jpeg", "24.jpeg", "25.jpeg", "26.jpeg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg"]
+    @images  = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "8.jpeg", "9.jpeg", "10.jpeg", "11.jpeg", "12.jpeg", "13.jpeg", "14.jpeg", "15.jpeg", "16.jpeg", "17.jpeg", "19.jpeg", "21.jpeg", "22.jpeg", "23.jpeg", "24.jpeg", "25.jpeg", "26.jpeg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg"]
     @random_no = rand(29)
     @random_image = @images[@random_no]
   end
 
   def new
-   @booking = Booking.new
    flash[:error] = nil
    flash[:notice] = nil
+   @booking = Booking.new
    if Date.parse(params[:start_date]) < Date.today
-     flash[:notice] = "Earliest booking date is #{Date.today}"
+     flash[:notice] = "Earliest booking date is #{Date.today.strftime("%b %-d")}"
      @booking.start_date = Date.today
    else
      @booking.start_date = params[:start_date]
