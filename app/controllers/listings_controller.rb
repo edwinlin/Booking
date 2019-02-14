@@ -5,6 +5,20 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.all
+
+    @images  = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "8.jpeg", "9.jpeg", "10.jpeg", "11.jpeg", "12.jpeg", "13.jpeg", "14.jpeg", "15.jpeg", "16.jpeg", "17.jpeg", "18.jpeg", "19.jpeg", "21.jpeg", "22.jpeg", "23.jpeg", "24.jpeg", "25.jpeg", "26.jpeg", "27.jpg", "28.jpg", "29.jpg", "30.jpg", "31.jpg"]
+    @random_no = rand(29)
+    @random_no_1 = rand(29)
+    @random_no_2 = rand(29)
+    @random_no_3 = rand(29)
+    @random_no_4 = rand(29)
+    @random_no_5 = rand(29)
+    @random_image = @images[@random_no]
+    @random_image_1 = @images[@random_no_1]
+    @random_image_2 = @images[@random_no_2]
+    @random_image_3 = @images[@random_no_3]
+    @random_image_4 = @images[@random_no_4]
+    @random_image_5 = @images[@random_no_5]
   end
 
   def show

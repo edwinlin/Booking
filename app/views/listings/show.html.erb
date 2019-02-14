@@ -27,7 +27,10 @@
                     <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+                    <a class="nav-link" <%= link_to "Edit Listing", edit_listing_path(@listing), method: :get %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to " All Listings", listings_path %></a>
                 </li>
                 <% end %>
             </ul>
