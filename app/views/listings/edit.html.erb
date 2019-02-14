@@ -8,21 +8,37 @@
 	<title>Edit Listing</title>
 </head>
 <body>
-<a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
-
-<nav class="navbar navbar-expand-lg navbar-light"">
-  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-    <% if !session[:user_id] %>
-      <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
-      <a class="nav-link" <%# link_to "Create Profile", new_user_path, method: :get %></a>
-      <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-    <% else %>
-      <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-      <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-      <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-    <% end %>
-  </ul>
-</nav>
+  <nav class="navbar navbar-expand-md">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+              </li>
+              <% if !session[:user_id] %>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+              </li>
+              <% end %>
+          </ul>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link text-align-right" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+              </li>
+          </ul>
+      </div>
+  </nav>
 
 
 <div class="container text-center">

@@ -9,16 +9,34 @@
   </head>
 
   <body>
-  <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
-
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <a class="nav-link" <%= link_to "View Profile", user_path(@booking.user) %></a>
-      <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-      <a class="nav-link" <%= link_to "Edit Booking", edit_booking_path %></a>
-      <a class="nav-link" <%= link_to "Delete Booking", booking_path(@booking), method: :delete, data: {confirm: 'Delete Booking?'} %></a>
-    </ul>
-  </nav>
+    <nav class="navbar navbar-expand-md">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "Edit Booking", edit_booking_path %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "View Profile", user_path(@booking.user) %></a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" <%= link_to "Delete Booking", booking_path(@booking), method: :delete, data: {confirm: 'Delete Booking?'} %></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-align-right" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
   <div class="container text-center" style="margin-bottom:0">
       <h1>Hey, <%= @user.name.titleize %>!</h1>

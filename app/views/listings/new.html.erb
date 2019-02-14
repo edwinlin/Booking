@@ -15,41 +15,63 @@
     <% end %>
   <% end %>
 
-<a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingLogo.jpg" style="max-height: 50px;"></a>
-
-<nav class="navbar navbar-expand-lg navbar-light">
-  <ul class="navbar-nav">
-      <% if !session[:user_id] %>
-        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-        <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
-        <a class="right-side nav-link ml-auto p-2" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-      <% else %>
-        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-        <a class="right-side nav-link ml-auto p-2"<%= link_to "Sign Out", logout_path, method: :delete %></a>
-      <% end %>
-  </ul>
-</nav>
+  <nav class="navbar navbar-expand-md">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+              </li>
+              <% if !session[:user_id] %>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+              </li>
+              <% end %>
+          </ul>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link text-align-right" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+              </li>
+          </ul>
+      </div>
+  </nav>
 
 <div class="row">
-    <div class="col">
-
+    <div class="col fill">
+      <img src="/images/<%= @random_image %>" style="max-height:60%; max-width:60%; display: block; margin-left: auto; margin-right: auto; width: 50%;">
     </div>
-    <div class="col ">
+
+    <div class="col text-center">
+      <br>
+      <br>
+      <br>
       <h1>Create a New Listing</h1>
 
-    <%= form_for @listing do |f| %>
-    <%= f.hidden_field :user_id, value: @user.id %>
-    <%= f.label :location %>
-    <%= f.text_field :location %><br>
-    <%= f.label :img_url %>
-    <%= f.text_field :img_url %><br>
-    <%= f.submit %>
-    <% end %>
+      <%= form_for @listing do |f| %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+      <%= f.label :location %>
+      <%= f.text_field :location %><br>
+      <%= f.label :img_url %>
+      <%= f.text_field :img_url %><br>
+      <%= f.submit %>
+      <% end %>
     </div>
-    <div class="col">
 
+    <div class="col fill">
+      <img src="/images/<%= @random_image %>" style="max-height:60%; max-width:60%; display: block; margin-left: auto; margin-right: auto; width: 50%;">
     </div>
+
   </div>
 
 

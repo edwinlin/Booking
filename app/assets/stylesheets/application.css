@@ -2,24 +2,80 @@
 
 @import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Roboto|Comfortaa');
 
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+}
 
-.carousel-inner .item img {
+.photos {
+  display: flex;
+  background-color: #000;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  padding: 0;
+  max-width: 980px;
+}
+
+.photos img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+  float: left;
+  flex: 0 0 auto;
+  background-color: #fff;
 }
 
-.carousel .item {
-  background:#F9F9F9;
-  border:1px solid #E0E0E0;
-  overflow:hidden;
-  max-height: 500px;
+
+@media screen and (min-width: 1024px) {
+  .photos img {
+    width: calc(100%/6);
+    height: calc(100%/6);
+  }
 }
 
-.carousel-inner > .item > img:hover {
-  border: 1px solid #000000;
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .photos img {
+    width: calc(100%/4);
+    height: calc(100%/4);
+  }
 }
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  .photos img {
+    width: calc(100%/3);
+    height: calc(100%/3);
+  }
+}
+
+@media screen and (min-width: 321px) and (max-width: 480px) {
+  .photos img {
+    width: calc(100%/2);
+    height: calc(100%/2);
+  }
+}
+
+@media screen  and (max-width: 320px) {
+  .photos img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+}
+
+
+
 
 .list-img {
   display: flex;
@@ -37,6 +93,7 @@
 
 img {
   border-radius: 8px;
+  /* box-shadow: 2px 2px 2px 2px grey; */
 }
 
 .has-events #avail {

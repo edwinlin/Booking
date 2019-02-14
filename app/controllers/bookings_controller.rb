@@ -15,10 +15,16 @@ class BookingsController < ApplicationController
   end
 
   def new
-    @booking = Booking.new
-    @booking.start_date = params[:start_date]
-    @listing = Listing.find(params[:id])
-    @user = User.find(session[:user_id])
+   @booking = Booking.new
+   flash[:notice] = nil
+   if Date.parse(params[:start_date]) < Date.today
+     flash[:notice] = "Earliest booking date is #{Date.today}"
+     @booking.start_date = Date.today
+   else
+     @booking.start_date = params[:start_date]
+   end
+   @listing = Listing.find(params[:id])
+   @user = User.find(session[:user_id])
   end
 
   def create

@@ -1,15 +1,53 @@
-<h1>Log In!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= stylesheet_link_tag "users" %>
+	<title>Create Profile</title>
+</head>
+<body>
+  
+<nav class="navbar navbar-expand-md">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" <%= link_to "Listings", listings_path %></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" <%= link_to "Back", welcome_1_path %></a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-<% if flash[:error] %>
-  <li style="color:red"><%= flash[:error] %></li>
-<% end %>
+<div class="row">
+    <div class="col">
 
-<%= form_tag "/login" do %>
-  <%= label_tag :email %>
-  <%= email_field_tag :email %><br>
-  <%= label_tag :password %>
-  <%= password_field_tag :password %><br>
-  <%= submit_tag "Log In" %>
-<% end %>
+    </div>
+    <div class="col">
+      <h1>Log In!</h1>
 
-<%= button_to "Back", welcome_1_path, method: :get %>
+      <%= form_tag "/login" do %>
+        <%= label_tag :email %>
+        <%= email_field_tag :email %><br>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %><br>
+        <%= submit_tag "Log In" %>
+      <% end %>
+
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+
+<footer class="fixed-bottom text-center">
+  <h4>BestBooking!</h3>
+  <p>All Rights Reserved &trade;</p>
+</footer>
+</body>
