@@ -4,47 +4,121 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag "listings" %>
-	<title>Document</title>
+	<%= stylesheet_link_tag "listings" %>
+	<title>New Listing</title>
 </head>
 <body>
-<div class="container text-center-left slogan">
-  <h4>BestBooking!</h4>
-</div>
-<nav class="navbar navbar-expand-lg navbar-light"">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-        <a class="nav-link" <%= link_to "Listings", listings_path %></a>
-        <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-    </ul>
-  </nav>
+    <% if flash[:error] %>
+      <% flash[:error].each do |error| %>
+        <li style="color:red"><%= error %></li>
+      <% end %>
+    <% end %>
+      <header>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="position:absolute">
+          <div class="container">
+            <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+              <ul class="navbar-nav mr-auto">
+                <% if !session[:user_id] %>
+                <li class="nav-item active">
+                  <a class="nav-link-1" <%= link_to "Listings", listings_path %></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link-1" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+                </li>
+                <% else %>
+                <li class="nav-item">
+                  <a class="nav-link-1" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link-1" <%= link_to "Edit Listing", edit_listing_path(@listing), method: :get %></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link-1" <%= link_to "All Listings", listings_path %></a>
+                </li>
+                <% end %>
+              </ul>
+              <form class="form-inline">
+                <!-- <div class="md-form my-0">
+                  <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                </div> -->
+                <!-- <li class="nav-item"> -->
+                <% if @listing.user.id == session[:user_id] %>
+                  <a class="nav-link text-align-right blue" <%= link_to "Delete", listing_path(@listing), method: :delete, data: {confirm: "Are you sure you want to delete this Listing and all of its Bookings?"} %></a>
+                <% end %>
+                  <a class="nav-link text-align-right blue" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+                <!-- </li> -->
+              </form>
+            </div>
+          </div>
+        </nav>
+        <!-- Navbar -->
 
-<div class="container text-center" style="margin-bottom:0">
-	 <h1><%= @listing.location %></h1>
-	<h3>Listing Owner: <%= link_to @listing.user.name.capitalize, lister_show_path(@listing.user) %></h3>
-</div>
+        <!-- Full Page Intro -->
+        <div class="view" style="background-image: url('https://thenypost.files.wordpress.com/2018/10/celeb-111.jpg?quality=90&strip=all&w=978&h=652&crop=1'); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 0.90;">
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-light align-items-center">
+            <!-- Content -->
+            <div class="container">
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-md-12 mb-4 white-text text-center">
+                  <br>
+                  <br>
+                  <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong><%= @listing.location %></strong></h1><br>
+                  <!-- <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s"> -->
+                </div>
+                <br>
+                <br>
+                <div class="container text-center">
+                  <h3>Listing Owner: <br><%= link_to @listing.user.name.titleize, lister_show_path(@listing.user) %></h3>
+                </div>
+                <div class="list-img">
+                  <%# if @listing.img_url %>
+                    <!-- <div id="list-img" style="margin-left:425px; height: auto; width: auto; max-width: 300px; max-height: 300px;"><%# image_tag @listing.img_url %></div> -->
+                  <%# else %>
+                    <img src="/images/<%= @random_image %>" style="max-height:40%; max-width:40%; display: block; margin-left: auto; margin-right: auto; width: 50%;">
+                  <%# end %><br>
+                </div>
+              </div>
+              <!--Grid row-->
+            </div>
+            <!-- Content -->
+          </div>
+          <!-- Mask & flexbox options-->
+        </div>
+        <!-- Full Page Intro -->
+      </header>
+      <!-- Main navigation -->
+      <!--Main Layout-->
+      <main>
+        <br><div class="container" style="background-color: rgba(0, 0, 0, 0.3); border-radius: 8px;">
+          <%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
+            <%=date.day%>
+            <% if @listing.user.id != session[:user_id] %>
+              <% if session[:user_id] %>
+                <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
+              <% end %>
+            <% end %>
+            <% bookings.each do |booking| %>
+              <div><%= booking.user.name.titleize %></div>
+            <% end %>
+            <% end %>
+        </div>
+
+      </main>
+      <!--Main Layout-->
 
 
+      <footer class="text-center">
+          <h4>BestBooking!</h4>
+          <p>All Rights Reserved &trade;</p>
+      </footer>
 
-<br>
-
-<h3>Reserve Your Dates:</h3>
-<div class="container">
-<%= month_calendar(attribute: :start_date, end_attribute: :end_date, events: @listing.bookings) do |date, bookings| %>
-  <%= link_to date.day, create_booking_path(date, @listing.id) %>
-  <div id="avail"><%= button_to "Available", create_booking_path(date, @listing.id), method: :get %></div>
-  <% bookings.each do |booking| %>
-    <div><%= booking.user.name %></div>
-  <% end %>
-<% end %>
-</div>
-
-<br>
-
-
-<footer class="text-center" style="background-color: rgb(204, 221, 255);">
-    <h4>BestBooking!</h3>
-    <p>All Rights Reserved &trade;</p>
-</footer>
-</body>
+    </body>
 </html>

@@ -1,45 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<%= stylesheet_link_tag "listings" %>
-	<title>Listings</title>
-</head>
-<body>
-<div class="container text-center-left slogan">
-  <h4>BestBooking!</h4>
-</div>
-<nav class="navbar navbar-expand-lg navbar-light"">
-  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
-      <a class="nav-link" <%= link_to "Sign Out", logout_path, method: :delete %></a>
-  </ul>
-</nav>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= stylesheet_link_tag "listings" %>
+    <title>Listings</title>
+  </head>
 
-<div class="container text-center">
-  <h1>Listings</h1>
-  <h6>Where would you like to stay?</h6>
-</div>
-
-<br>
-
- <div class="row justify-content-center">
-    <div class="col-4">
-     <% @listings.each do |l| %>
-		  <p><%= link_to l.location, listing_path(l) %></p>
-		<% end %>
+  <body style="background-image: url('https://img1.southernliving.timeinc.net/sites/default/files/styles/4_3_horizontal_inbody_900x506/public/image/2016/04/main/white-kitchen-open-shelving-2464001-0003_2.jpg?itok=sTu0Rrv-'); background-repeat: no-repeat; background-attachment: fixed; background-position: center; background-size: cover;">
+  <!-- nav -->
+  <nav class="navbar navbar-expand-md fixed-top position: absolute; z-index: 5;">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+              </li>
+              <% if !session[:user_id] %>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+              </li>
+              <% else %>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" <%= link_to "Create a Listing", new_listing_path %></a>
+              </li>
+              <% end %>
+          </ul>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link text-align-right blue" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+              </li>
+          </ul>
+      </div>
+  </nav>
+  <!-- end-nav -->
+  <!-- title -->
+  <br>
+  <br>
+  <div class="container text-center" >
+    <h1 >LISTINGS</h1>
+    <h5 style="margin-bottom: 20px;">Where would you like to stay?</h5>
+  </div>
+  <!-- end-title -->
+  <!-- main -->
+  <div id="list-container" class="container-fluid text-center">
+    <div id="list-row" class="row content">
+      <div class="col-3">
+      </div>
+    <div class="col-sm-6 justify-content-center list-holder">
+      <div class="listing-list">
+        <% @listings.each do |l| %>
+          <p  id="list-index"><%= link_to l.location, listing_path(l) %></p>
+        <% end %>
+      </div>
     </div>
-    <div class="col-4">
-
+      <div class="col-3">
+      </div>
     </div>
   </div>
+  <!-- end main -->
 
 
-<footer class="text-center" style="background-color: rgb(204, 221, 255);">
-    <h4>BestBooking!</h3>
-    <p>All Rights Reserved &trade;</p>
-</footer>
-</body>
+  <!-- footer -->
+  <div id="footer" class="container-fluid text-center">
+      <h4>BestBooking!</h4>
+      <p>All Rights Reserved &trade;</p>
+  </div>
+  <!-- end footer -->
+  </body>
 </html>

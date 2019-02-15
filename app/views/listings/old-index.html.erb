@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  	<meta charset="UTF-8">
-  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-  	<%= stylesheet_link_tag "listings" %>
-  	<title>New Listing</title>
-  </head>
-  <body>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<%= stylesheet_link_tag "listings" %>
+	<title>All Listings</title>
+</head>
+<body>
     <% if flash[:error] %>
       <% flash[:error].each do |error| %>
         <li style="color:red"><%= error %></li>
@@ -24,9 +24,6 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
               <ul class="navbar-nav mr-auto">
                 <% if !session[:user_id] %>
-                <li class="nav-item active">
-                  <a class="nav-link-1" <%= link_to "Listings", listings_path %></a>
-                </li>
                 <li class="nav-item">
                   <a class="nav-link-1" <%= link_to "Create Profile", new_user_path, method: :get %></a>
                 </li>
@@ -35,7 +32,7 @@
                   <a class="nav-link-1" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link-1" <%= link_to "Listings", listings_path %></a>
+                  <a class="nav-link-1" <%= link_to "Create a Listing", new_listing_path %></a>
                 </li>
                 <% end %>
               </ul>
@@ -53,7 +50,7 @@
         <!-- Navbar -->
 
         <!-- Full Page Intro -->
-        <div class="view" style="background-image: url('https://www.homebeautiful.com.au/cdnstorage/cache/2/8/b/3/1/2/x28b312de6dd7e408e11b484b0878c2977b0bc834.jpg.pagespeed.ic.KqScWjinVp.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 0.90;">
+        <div class="view" style="background-image: url('https://i.pinimg.com/originals/60/a8/f3/60a8f36d5a3462f11dd35a8c5370b972.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 0.90;">
           <!-- Mask & flexbox options-->
           <div class="mask rgba-black-light align-items-center">
             <!-- Content -->
@@ -64,29 +61,33 @@
                 <div class="col-md-12 mb-4 white-text text-center">
                   <br>
                   <br>
-                  <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Edit Listing</strong></h1><br>
+                  <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>All Listings</strong></h1>
                   <!-- <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s"> -->
                 </div>
-                <br>
-                <br>
-                <div class="card" style="width: 18rem; background-color:transparent; margin-left:39%; background-color: rgba(0, 0, 0, 0.25);">
-                  <div class="card-body col text-center">
-                    <%= form_for @listing do |f| %>
-                      <%= f.hidden_field :user_id, value: @listing.user.id %>
-                      <strong><%= f.label :location %></strong><br>
-                      <%= f.text_field :location %><br><br>
 
-                      <strong><%= f.label :img_url %></strong><br>
-                      <%= f.text_field :img_url %><br><br>
-
-                      <%= f.submit class: "btn btn-dark" %><br><br>
-                    <% end %>
-                    <div class="btn btn-outline-dark" style="border-radius: 8px;"><%= button_to "Delete Listing", listing_path(@listing), method: :delete, data: {confirm: "Are you sure you want to delete your listing?"} %></div>
-                  </div>
+                <div class="container text-center">
+                  <h6>Where would you like to stay?</h6>
                 </div>
+
+                <br>
+
+                <!-- <div class="col-3">
+
+                </div> -->
+
+                 <div class="row justify-content-center">
+                    <div class="col-5 text-center" style="margin-left:100%;">
+                     <% @listings.each do |l| %>
+                		  <p><%= link_to l.location, listing_path(l) %></p>
+                		<% end %>
+                    </div>
+                    <!-- <div class="col-3">
+
+                    </div> -->
+                  </div>
+
               </div>
               <!--Grid row-->
-
             </div>
             <!-- Content -->
           </div>
