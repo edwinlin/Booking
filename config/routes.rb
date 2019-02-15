@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy', as: 'logout'
 
+  get '/about', to: "application#about", as: 'about_path'
+
   get '/lister_show/:id', to: 'listings#lister_show', as: 'lister_show'
 
   get '/users/:id/new_listing', to: "listings#new", as: "create_listing"

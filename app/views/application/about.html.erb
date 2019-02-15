@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Best Booking!</title>
+  </head>
+  <header>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="position:absolute">
+      <div class="container">
+        <a class="logo navbar-brand" href="<%= welcome_1_path %>"><img src="/images/BestBookingTransparent.jpg" style="max-height: 50px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+          <ul class="navbar-nav mr-auto">
+            <% if !session[:user_id] %>
+            <li class="nav-item active">
+              <a class="nav-link-1" <%= link_to "All Listings", listings_path %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link-1" <%= link_to "Create Profile", new_user_path, method: :get %></a>
+            </li>
+            <% else %>
+            <li class="nav-item">
+              <a class="nav-link-1" <%= link_to "View Profile", user_path(session[:user_id]), method: :get %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link-1" <%= link_to "All Listings", listings_path %></a>
+            </li>
+            <% end %>
+          </ul>
+          <form class="form-inline">
+            <!-- <div class="md-form my-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            </div> -->
+            <!-- <li class="nav-item"> -->
+              <a class="nav-link text-align-right blue" <%= link_to "Sign Out", logout_path, method: :delete %></a>
+            <!-- </li> -->
+          </form>
+        </div>
+      </div>
+    </nav>
+  <body>
+
+    <div class="view" style="background-image: url('https://abrilcasacor.files.wordpress.com/2019/02/brut_1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 0.80;">
+          <!-- Mask & flexbox options-->
+          <div class="mask rgba-black-light align-items-center">
+            <!-- Content -->
+            <div class="container">
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-md-12 mb-4 text-center">
+
+                  <br><br><br><h1 id="welcomeheader" style="color:black;">About the Creators</h1><br><br><br>
+
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                        <img src="/images/cass.jpg" alt="Avatar" style="width:300px;height:300px;">
+                      </div>
+                      <div class="flip-card-back">
+                        <h1>Cassidy Samelian</h1>
+                        <p>Dancer & Programmer</p>
+                        <p>LINKS</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                        <img src="img_avatar.png" alt="Avatar" style="width:300px;height:300px;">
+                      </div>
+                      <div class="flip-card-back">
+                        <h1>Jon Freed</h1>
+                        <p>Playboy & Programmer</p>
+                        <p>LINKS</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                        <img src="/images/ed.jpg" alt="Avatar" style="width:300px;height:300px;">
+                      </div>
+                      <div class="flip-card-back">
+                        <h1>Edwin Lin</h1>
+                        <p>Chef & Humble Programmer</p>
+                        <p>LINKS</p>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+              <!--Grid row-->
+            </div>
+            <!-- Content -->
+          </div>
+          <!-- Mask & flexbox options-->
+        </div>
+
+  </body>
+</html>
