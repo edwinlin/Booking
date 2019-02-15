@@ -18,6 +18,12 @@
   margin-left: 20px;
 }
 
+/* #user-img {
+    display: flex;
+    justify-content: center;
+    margin-left: 250px;
+} */
+
 
 .gallery {
 -webkit-column-count: 3;
@@ -139,9 +145,11 @@ h5 {
 
 
 
-.list-img {
+#list-img {
   display: flex;
   justify-content: center;
+  height: auto;
+  width: auto;
 }
 
 .book-img {

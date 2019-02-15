@@ -79,11 +79,11 @@
                   <h3>Listing Owner: <br><%= link_to @listing.user.name.titleize, lister_show_path(@listing.user) %></h3>
                 </div>
                 <div class="list-img">
-                  <% if @listing.img_url %>
-                    <div class="list-img" style="margin-left:250px;"><%= image_tag @listing.img_url %></div>
-                  <% else %>
+                  <%# if @listing.img_url %>
+                    <!-- <div id="list-img" style="margin-left:425px; height: auto; width: auto; max-width: 300px; max-height: 300px;"><%# image_tag @listing.img_url %></div> -->
+                  <%# else %>
                     <img src="/images/<%= @random_image %>" style="max-height:40%; max-width:40%; display: block; margin-left: auto; margin-right: auto; width: 50%;">
-                  <% end %><br>
+                  <%# end %><br>
                 </div>
               </div>
               <!--Grid row-->
