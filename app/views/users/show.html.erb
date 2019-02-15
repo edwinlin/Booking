@@ -47,7 +47,7 @@
         <!-- Navbar -->
 
         <!-- Full Page Intro -->
-        <div class="view" style="background-image: url('https://im.proptiger.com/1/501448/81/godrej-properties-garden-city-main-other-775738.jpeg'); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 0.90;">
+        <div class="view" style="background-image: url('https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/1525474227/049-il-san-pietro-di-positano-TOP100HOTELS0518.jpg?itok=zOnhoTGE'); background-repeat: no-repeat; background-size: cover; background-position: center center; opacity: 0.90;">
           <!-- Mask & flexbox options-->
           <div class="mask rgba-black-light align-items-center">
             <!-- Content -->
@@ -58,38 +58,49 @@
                 <div class="col-md-12 mb-4 white-text text-center">
                   <br>
                   <br>
-                  <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s">Hi, <%= @user.name.titleize %>!</h1><br>
+                  <br>
+                  <br>
+                  <br>
+                  <br>
+                  <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" style="color:rgb(48	127	124);" data-wow-delay="0.3s">Hi, <%= @user.name.titleize %>!</h1><br>
                   <!-- <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s"> -->
                 </div>
                 <br>
-                <br><div class="container" style="margin-top:30px">
+                <br><div class="container" style="margin-left:12%; border-radius:20px;">
                   <div class="row">
 
-                    <div class="col-sm">
-                      <ul>
-                         <img src="/images/<%= @random_image %>" class="img-thumbnail" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-                      </ul><br>
+                    <div class="card" style="width: 18rem; background-color:transparent; background-color: rgba(238,	232,	224, 0.75);">
+                      <div class="card-body col text-center" style="color:rgb(40 127	130)">
+                        <ul>
+                           <img src="/images/<%= @random_image %>" class="img-thumbnail" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+                        </ul><br>
+                      </div>
                     </div>
 
                     <span class="border border-primary"></span>
 
-                    <div class="col-sm">
+                    <div class="card" style="width: 18rem; background-color:transparent; background-color: rgba(238,	232,	224, 0.75);">
+                      <div class="card-body col text-center" style="color:rgb(40 127	130)">
                       <h2 class="text-center"">Your Upcoming Bookings:</h2>
-                        <% if @user.bookings.empty?%>
+                        <% if @user.bookings.empty? || @user.bookings = []%>
                         	 <li>You Currently Have No Bookings.</li>
                         	<% else %>
                           <ul>
                         	  <% @user.bookings.each do |booking| %>
+                              <% if !booking.listing.nil? %>
                           		<li><%= link_to booking.listing.location, booking_path(booking) %><br>
                           		   <strong>Dates: </strong><%= booking.to_d %></li><br>
+                              <% end %>
                             <% end %>
                         	</ul>
                       	<% end %>
                     </div>
+                    </div>
 
                     <span class="border border-primary"></span>
 
-                    <div class="col-sm">
+                    <div class="card" style="width: 18rem; background-color:transparent; background-color: rgba(238,	232,	224, 0.75);">
+                      <div class="card-body col text-center" style="color:rgb(40 127	130)">
                       <h2>Your Listings:</h2>
                     	  <% if @user.listings.empty?%>
                     	    <li>You Currently Have No Listings.</li>
@@ -100,6 +111,7 @@
                     	     <% end %>
                     	   </ul>
                       	<% end %>
+                      </div>
                     </div>
 
                   </div>

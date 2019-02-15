@@ -38,7 +38,7 @@
                   <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 </div> -->
                 <!-- <li class="nav-item"> -->
-                <a class="nav-link" <%= link_to "Delete Booking", booking_path(@booking), method: :delete, data: {confirm: 'Delete Booking?'} %></a>
+                <a class="nav-link-1 blue" <%= link_to "Delete Booking", booking_path(@booking), method: :delete, data: {confirm: 'Delete Booking?'} %></a>
                 <a class="nav-link text-align-right blue" <%= link_to "Sign Out", logout_path, method: :delete %></a>
                 <!-- </li> -->
               </form>
@@ -59,18 +59,18 @@
                 <div class="col-md-12 mb-4 white-text text-center">
                   <br>
                   <br>
-                  <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Book a Listing!</strong></h1><br>
+                  <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong>Here is your Booking!</strong></h1><br>
                   <!-- <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s"> -->
                 </div>
                 <br>
                 <br>
-                <h4 class="lead" style="margin-left:40%;">Here's your upcoming booking:</h4>
-                <div class="card col-sm-4" style="width: 18rem; background-color:transparent; margin-left:37%; background-color: rgba(0, 0, 0, 0.35);">
+                <h4 class="lead" style="margin-left:40%;">Upcoming Booking details:</h4>
+                <div class="card col-sm-4" style="width: 18rem; background-color:transparent; margin-left:35%; background-color: rgba(255, 255, 255, 0.75);">
                   <div class="card-body col text-center">
                     <h6>Address:</h6>
                     <%= link_to @booking.listing.location, listing_path(@booking.listing) %><br><br>
                     <h6>Dates:</h6>
-                    <div style="color:white;"><%= @booking.to_d %></div><br>
+                    <div><%= @booking.to_d %></div><br>
 
                     <% if @booking.listing.img_url %>
                       <div class="img-thumbnail"><%= image_tag @booking.listing.img_url %></div>

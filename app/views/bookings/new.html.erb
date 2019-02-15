@@ -8,11 +8,6 @@
 	<title>New Booking</title>
 </head>
 <body>
-    <% if flash[:error] %>
-      <% flash[:error].each do |error| %>
-        <li style="color:red"><%= error %></li>
-      <% end %>
-    <% end %>
       <header>
         <!--Navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar" style="position:absolute">
@@ -69,7 +64,13 @@
                       <%= f.hidden_field :listing_id, value: @listing.id %>
                       <%= f.hidden_field :start_date, value: @booking.start_date %>
 
-                      <div style="color:red"><%= flash[:notice] %><br></div>
+                          <% if flash[:error] %>
+                            <% flash[:error].each do |error| %>
+                              <li style="color:red"><%= error %></li>
+                            <% end %>
+                          <% end %>
+
+                              <div style="color:red"><%= flash[:notice] %></div>
 
                       <%= f.label :start_date %>
                       <div style="color:white;"><%= @booking.start_date.strftime("%b %-d, %Y") %></div><br>
@@ -79,6 +80,7 @@
 
                       <%= f.submit class: "btn btn-dark"%>
                     <% end %>
+                    <%= button_to "Back", listing_path(@listing), method: :get%>
                   </div>
                 </div>
               </div>

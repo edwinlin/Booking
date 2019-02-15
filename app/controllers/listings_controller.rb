@@ -66,6 +66,7 @@ class ListingsController < ApplicationController
   end
 
   def destroy
+    @listing.bookings.destroy
     @listing.destroy
     redirect_to user_path(@listing.user)
   end
