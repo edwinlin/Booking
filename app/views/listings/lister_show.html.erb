@@ -71,21 +71,19 @@
                 <!--Grid column-->
                 <div class="col-md-12 mb-4 white-text text-center">
                   <br>
-                  <br>
                   <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-0 pt-md-5 pt-5 wow fadeInDown" data-wow-delay="0.3s"><strong><%= @lister.name.titleize %>'s Listing Profile</strong></h1><br>
                   <!-- <hr class="hr-light my-4 wow fadeInDown" data-wow-delay="0.4s"> -->
                 </div>
                 <br>
-                <br>
-                <div class="card" style="width: 30rem; background-color:transparent; margin-left:32%; background-color: rgba(0, 0, 0, 0.5);">
+                <div class="card" style="width: 30rem; background-color:transparent; margin-left:32%; margin-top:0; background-color: rgba(255, 255, 255, 0.75);">
                   <div class="card-body col text-center">
                     <% if @lister.img_url %>
-                      <%= image_tag @lister.img_url %>
+                      <div class="img-thumbnail"> <%= image_tag @lister.img_url %></div>
                     <% else %>
-                      <img src="/images/<%= @random_image %>" style="max-height:40%; max-width:40%;">
+                      <img class="img-thumbnail" src="/images/<%= @random_image %>" style="max-height:40%; max-width:40%;">
                     <% end %>
 
-                    <h3 style="color:white;">Properties:</h3>
+                    <h4 style="">Properties:</h4>
                       <% if !@lister.listings.empty? %>
                         <% @lister.listings.each do |listing| %>
                           <li style="color:white;"><%= link_to listing.location, listing_path(listing) %></li><br>
